@@ -7,7 +7,7 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
-from .serializers import ArticleSerializer, CommentListSerializer
+from .serializers import ArticleSerializer, CommentListSerializer, ArticleCutSerializer
 from .models import Article, Comment
 
 
@@ -24,7 +24,7 @@ def article_list_create(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = ArticleSerializer(data=request.data)
+        serializer = ArticleCutSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -32,7 +32,7 @@ def article_list_create(request):
 
 
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE', 'GET'])
 @authentication_classes([JSONWebTokenAuthentication])
 @permission_classes([IsAuthenticated])
 def article_update_delete(request, article_pk):
@@ -44,7 +44,8 @@ def article_update_delete(request, article_pk):
 
 
     if request.method == 'PUT':
-        serializer = ArticleSerializer(article, data=request.data)
+        serializer = ArticleCutSerializer(article, data=request.data)
+        print(serializer)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
@@ -52,6 +53,10 @@ def article_update_delete(request, article_pk):
     elif request.method == 'DELETE':
         article.delete()
         return Response({ 'id': article_pk }, status=status.HTTP_204_NO_CONTENT)
+
+    elif request.method == 'GET':
+        serializer = ArticleSerializer(article)
+        return Response(serializer.data)
 
 
 

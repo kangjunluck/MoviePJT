@@ -4,8 +4,8 @@
     <router-link :to="{ name: 'CreateArticle' }">CreateArticle</router-link>
     <ul>
       <li v-for="(article, idx) in articles" :key="idx">
-        <span @click="updateArticleStatus(article)" :class="{ completed: article.completed }">제목 : {{ article.title }}</span>
-        <span  :class="{ completed: article.completed }">{{ article.content }}</span>
+        <p>제목 : <span @click="moveDetail(article)" >{{ article.title }}</span></p>
+        <p>내용 : <span  :class="{ completed: article.completed }">{{ article.content }}</span></p>
         <button @click="deleteArticle(article)" class="article-btn">X</button>
         <hr>
       </li>
@@ -77,14 +77,24 @@ export default {
           article.completed = !article.completed
         })
       },
+
+    moveDetail (article) {
+      this.$router.push({
+        name: 'ArticleDetail',
+        params: {
+          article: article,
+        }
+      })
     },
-  // created: function () {
-  //   if (localStorage.getItem('jwt')) {
-  //     this.getArticles()
-  //   } else {
-  //     this.$router.push({name: 'Login'})
-  //   }
-  // }
+  },
+
+  created: function () {
+    if (localStorage.getItem('jwt')) {
+      this.getArticles()
+    } else {
+      this.$router.push({name: 'Login'})
+    }
+  }
 }
 </script>
 

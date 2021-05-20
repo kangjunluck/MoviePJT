@@ -32,14 +32,14 @@ export default {
     login: function () {
       axios({
         method: 'post',
-        url: 'http://127.0.0.1:8000/accounts/api-token-auth/',
+        url: 'http://127.0.0.1:8000/accounts/login/',
         data: this.credentials,
       })
         .then(res => {
           console.log(res)
           localStorage.setItem('jwt', res.data.token)
           this.$emit('login')
-          this.$router.push({ name: 'TodoList' })
+          this.$router.push({ name: 'Article' })
         })
         .catch(err => {
           console.log(err)

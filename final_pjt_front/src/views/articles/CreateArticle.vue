@@ -5,7 +5,7 @@
       <p>내용<br>
         <textarea name="" id="" cols="30" rows="10" v-model.trim="content"></textarea>
       </p>
-      <button @click="createArticle">작성완료</button>
+      <button @click.prevent="createArticle">작성완료</button>
     </form>
   </div>
 </template>

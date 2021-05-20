@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 
 import Article from '../views/articles/Article.vue'
 import CreateArticle from '../views/articles/CreateArticle.vue'
+import UpdateArticle from '../views/articles/UpdateArticle.vue'
+import ArticleDetail from '../views/articles/ArticleDetail.vue'
 
 import Movie from '../views/Movie.vue'
 import Profile from '../views/Profile.vue'
@@ -39,6 +41,16 @@ const routes = [
     path: '/articles/create',
     name: 'CreateArticle',
     component: CreateArticle
+  },
+  {
+    path: '/articles/update',
+    name: 'UpdateArticle',
+    component: UpdateArticle
+  },
+  {
+    path: '/articles/detail',
+    name: 'ArticleDetail',
+    component: ArticleDetail
   },
   {
     path: '/similar',
