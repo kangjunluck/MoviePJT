@@ -4,7 +4,7 @@
     <router-link :to="{ name: 'CreateArticle' }">CreateArticle</router-link>
     <ul>
       <li v-for="(article, idx) in articles" :key="idx">
-        <p>제목 : <span @click="moveDetail(article)" >{{ article.title }}</span></p>
+        <p>제목 : <span class="article-item" @click="moveDetail(article)" >{{ article.title }}</span></p>
         <p>내용 : <span  :class="{ completed: article.completed }">{{ article.content }}</span></p>
         <button @click="deleteArticle(article)" class="article-btn">X</button>
         <hr>
@@ -82,7 +82,7 @@ export default {
       this.$router.push({
         name: 'ArticleDetail',
         params: {
-          article: article,
+          id: article.id,
         }
       })
     },
@@ -102,9 +102,11 @@ export default {
   .article-btn {
     margin-left: 10px;
   }
+.article-item {
+  cursor: pointer;
+}
+.article-item:hover {
+  border: 2px solid dodgerblue;
+}
 
-  .completed {
-    text-decoration: line-through;
-    color: rgb(112, 112, 112);
-  }
 </style>
