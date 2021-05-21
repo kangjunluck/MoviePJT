@@ -25,7 +25,7 @@ class MovieListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
-        fields = ('title', )
+        fields = '__all__'
 
 # 영화 상세조회
 class MovieSerializer(serializers.ModelSerializer):
