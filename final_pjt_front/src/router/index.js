@@ -8,6 +8,9 @@ import UpdateArticle from '../views/articles/UpdateArticle.vue'
 import ArticleDetail from '../views/articles/ArticleDetail.vue'
 
 import Movie from '../views/Movie.vue'
+import MovieDetail from '../views/MovieDetail.vue'
+
+
 import Profile from '../views/Profile.vue'
 import Similar from '../views/Similar.vue'
 
@@ -22,16 +25,25 @@ const routes = [
     name: 'Home',
     component: Home
   },
+
   {
     path: '/movie',
     name: 'Movie',
     component: Movie
   },
   {
+    path: '/movie/detail',
+    name: 'MovieDetail',
+    component: MovieDetail
+  },
+
+
+  {
     path: '/profile',
     name: 'Profile',
     component: Profile
   },
+
   {
     path: '/articles',
     name: 'Article',
@@ -52,6 +64,7 @@ const routes = [
     name: 'ArticleDetail',
     component: ArticleDetail
   },
+
   {
     path: '/similar',
     name: 'Similar',
