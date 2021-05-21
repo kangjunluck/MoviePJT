@@ -5,9 +5,13 @@ from .models import Article, Comment
 # 댓글 조회
 class CommentListSerializer(serializers.ModelSerializer):
 
+    # article_title = serializers.CharField(source="article.title", read_only=True)
+
     class Meta:
         model = Comment
-        fields = ('content',)
+        fields = '__all__'
+        read_only_fields = ('article', 'user',)
+
 
 class ArticleCutSerializer(serializers.ModelSerializer):
     

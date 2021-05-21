@@ -62,11 +62,15 @@ def article_update_delete(request, article_pk):
 
 # 댓글 생성
 @api_view(['POST'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def comment_create(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
+    print(article)
+    print(article_pk)
     serializer = CommentListSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        serializer.save(article=article)
+        serializer.save(article=article, user=request.user)
         return Response(serializer.data)
 
 

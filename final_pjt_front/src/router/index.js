@@ -7,8 +7,8 @@ import CreateArticle from '../views/articles/CreateArticle.vue'
 import UpdateArticle from '../views/articles/UpdateArticle.vue'
 import ArticleDetail from '../views/articles/ArticleDetail.vue'
 
-import Movie from '../views/Movie.vue'
-import MovieDetail from '../views/MovieDetail.vue'
+import Movie from '../views/movies/Movie.vue'
+import MovieDetail from '../views/movies/MovieDetail.vue'
 
 
 import Profile from '../views/Profile.vue'
@@ -32,7 +32,7 @@ const routes = [
     component: Movie
   },
   {
-    path: '/movie/detail',
+    path: '/movie/:movie_id',
     name: 'MovieDetail',
     component: MovieDetail
   },
@@ -60,7 +60,7 @@ const routes = [
     component: UpdateArticle
   },
   {
-    path: '/articles/detail',
+    path: '/articles/:article_id',
     name: 'ArticleDetail',
     component: ArticleDetail
   },

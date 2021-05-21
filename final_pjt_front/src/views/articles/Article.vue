@@ -82,7 +82,7 @@ export default {
       this.$router.push({
         name: 'ArticleDetail',
         params: {
-          id: article.id,
+          article_id: article.id,
         }
       })
     },
