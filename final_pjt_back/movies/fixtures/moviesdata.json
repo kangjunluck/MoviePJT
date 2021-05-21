@@ -1,0 +1,87 @@
+[
+	{
+		"model": "movies.movie",
+		"fields": {
+			"title": "천국의 그림자",
+			"genres": [
+				{
+					"id": 18,
+					"name": "드라마"
+				},
+				{
+					"id": 35,
+					"name": "코미디"
+				}
+			],
+			"original_title": "Varjoja paratiisissa",
+			"original_language": "fi",
+			"overview": "첫 장면부터 청소차가 새벽을 가른다. 청소부는 제각기 정해진 구역에서 익숙하게 쓰레기를 처리한다. 청소부 니칸더(Nikander)의 일상이 피아노선율에 따라 잔잔히, 사뭇 엄숙하게 펼쳐진다.  이 작품은 청소부 니칸더(Nikander) 가 다친 손목을 계기로 슈퍼마켓 계산대 아가씨 일로나(Ilona)와의 만남을 갖게 되면서 시작된다. 가난하고 소외 받는 이들의 삶과 사랑에 초점이 맞춰져 있다. 그들은 사랑의 감정조차 억누른 채 너무도 소극적인 모습으로 일관한다. 가난에 짓눌린 그들이 엮는 소심한 사랑은 어둠과 함께 시작하고 내내 어둠에만 머물러 있다. 그럴듯한 식당에서도 호텔예서도 심지어 직장에서조차 이들은 냉대 받는다. 익숙해진 사회의 멸시 속에서 소박한 두 사람의 사랑은 오히려 소중한 가치를 지닌다. 천국의 그림자가 화려한 도시의 그늘에 가려진, 바로 그 어둠을 상징한다면 역설적이게도 그 어둠을 걷는 자의 삶은 누추하고 고적하기만 하다.",
+			"adult": false,
+			"budget": 0,
+			"poster_path": "/o2cWCX48flnEgDwSWu0Gpia0i0N.jpg",
+			"release_date": "1986-10-17",
+			"runtime": 76,
+			"vote_average": 7.2,
+			"video": "bOYvq-Sj4Ls",
+			"backdrop_path": "/l94l89eMmFKh7na2a1u5q67VgNx.jpg"
+		}
+	},
+	{
+		"model": "movies.movie",
+		"fields": {
+			"title": "포룸",
+			"genres": [
+				{
+					"id": 80,
+					"name": "범죄"
+				},
+				{
+					"id": 35,
+					"name": "코미디"
+				}
+			],
+			"original_title": "Four Rooms",
+			"original_language": "en",
+			"overview": "새해 전날 밤, LA 몽시뇰 호텔에서 첫근무를 하게 된 괴짜 벨보이 테드는 상상조차 할 수 없는 최악의 밤을 맞이한다. 허니문 스위트룸에 투숙한 마녀들의 부활의식에 야릇한 제물로 걸려드는가 하면, 얼음 배달차 들른 룸 404호의 악당 지그프리드는 아내의 정부라고 오해를 한다. 5백 달러를 받고 돌봐주기로 한 룸 309호 갱스터 부부의 꼬마 악동들은 시끌벅적한 소란을 벌이며 방 한 칸을 홀라당 날려버린다. 마지막 펜트하우스 특실 룸에는 할리우드 최고의 코미디언 체스터 러쉬와 그의 친구들이 벌이는 잔인한 내기에 엉겁결에 끼어들게 된 테드는 피할 수 없는 희생양이 될 판이 된다.",
+			"adult": false,
+			"budget": 4000000,
+			"poster_path": "/75aHn1NOYXh4M7L5shoeQ6NGykP.jpg",
+			"release_date": "1995-12-09",
+			"runtime": 98,
+			"vote_average": 5.7,
+			"video": "S_Pd2pGkq54",
+			"backdrop_path": "/u0zMKKpEdDWpOKmFW2sLbKKICJH.jpg"
+		}
+	},
+	{
+		"model": "movies.movie",
+		"fields": {
+			"title": "킬러 나이트",
+			"genres": [
+				{
+					"id": 28,
+					"name": "액션"
+				},
+				{
+					"id": 53,
+					"name": "스릴러"
+				},
+				{
+					"id": 80,
+					"name": "범죄"
+				}
+			],
+			"original_title": "Judgment Night",
+			"original_language": "en",
+			"overview": "어느날 프랭크(Frank Wyatt: 에밀리오 에스테베즈 분)와 마이크(Mike Peterson: 쿠바 구딩 주니어 분), 그리고 레이(Ray Cochran: 제레미 피번 분)와 프랭크의 동생 존(John Wyatt: 스티븐 도프 분)은 권투시합을 구경하기 위해 레이가 빌린 이동주택차를 몰고 시합장으로 간다. 그러나 꽉 막힌 교통에 지친 레이는 지름길로 간다며 빈민가로 들어간다. 긴장했던 탓에 그들은 차옆에 쓰러져 있는 사람을 자신들이 친줄 알고 차안으로 끌어들인다. 그리고 그 남자가 총상을 입은 것을 보고 놀란다. 갑자기 나타난 필론(Fallon: 데니스 레리 분)이란 악당들은 총상을 입은 사람이 필론으로부터 돈을 훔쳤다며 그 자리에서 그를 죽인다. 이를 목격한 프랭크와 친구들은 증인마저 없애려 드는 그들에게서 도망친다. 그러나 전화조차 없고 도와주는 이 조차 없는 그들에게 상황은 점점 악화되어 간다. 가까스로 도움을 받아 경찰에 전화를 걸지만 경찰은 오지 않고 레이는 악당들의 손에 죽고 만다. 슈퍼마켓을 발견한 그들은 경찰을 오게 하려고 일부러 유리창을 깨지만 그곳까지 일당이 따라와 존과 마이크는 부상을 입게 되고 마지막까지 무사했던 프랭크는 도움을 청하겠다며 나갔다가 악당 일행 중 유일하게 살아남은 두목 필론과 정면으로 대결하게 되는데...",
+			"adult": false,
+			"budget": 21000000,
+			"poster_path": "/rYFAvSPlQUCebayLcxyK79yvtvV.jpg",
+			"release_date": "1993-10-15",
+			"runtime": 110,
+			"vote_average": 6.4,
+			"video": "G5p7wq2PcJM",
+			"backdrop_path": "/5aXp2s4l6g5PcMMesIj63mx8hmJ.jpg"
+		}
+	}
+]
