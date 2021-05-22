@@ -57,7 +57,7 @@ for num in movie_list:
 
 
         
-        # print(genre_ids) 
+        print(genre_ids, data["genres"]) 
 
         
         if len(data["overview"]) > 10 and int(data["release_date"][:4]) >= 1980 and len(data["poster_path"]) > 10 and len(data["backdrop_path"]) > 10:
