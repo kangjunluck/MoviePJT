@@ -73,23 +73,38 @@ export default {
 
     // 정렬 함수 ---------------------------------------
     actionFilter () {
-      this.getMovies()
-      console.log(this.movies)
-      const newMovies = []
-      this.movies.forEach((movie)=>{
-        const genres = movie.genres
-        console.log(typeof(genres))
-        for (const genre of genres) {
-          console.log(genre)
-          if (genre['name'] === "액션") {
-            newMovies.push(movie)
+      const myPromise = new Promise((resolve, reject) => {
+        axios({
+          method: 'get',
+          url: 'http://127.0.0.1:8000/movies/',
+          headers: this.setToken()
+        })
+          .then((res) => {
+            console.log(res)
+            resolve()
+            this.movies = res.data
+          })
+          .catch((err) => {
+            console.log(err)
+            reject()
+          })
+      })
+      myPromise.then(() => {
+        const newMovies = []
+        this.movies.forEach((movie)=>{
+          const genres = movie.genres
+          for (const genre of genres) {
+            if (genre === 28) {
+              newMovies.push(movie)
+            }
           }
+        })
+        if (newMovies) {
+          this.movies = newMovies
         }
       })
-      if (newMovies) {
-        this.movies = newMovies
-      }
     },
+
 
   },
   created: function () {
