@@ -2,11 +2,12 @@ from django.db import models
 from django.conf import settings
 
 # Create your models here.
-
+# class Genre
 class Movie(models.Model):
     # movieid = models.CharField(max_length=20, unique=True)
     title = models.CharField(max_length=100)
-    genres = models.CharField(max_length=200)
+    # genres = models.CharField(max_length=200)
+    genres = models.JSONField(default=dict)    
     original_title = models.CharField(max_length=200)
     original_language = models.CharField(max_length=10)
     overview = models.TextField()

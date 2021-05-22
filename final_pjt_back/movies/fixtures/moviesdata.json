@@ -5,14 +5,8 @@
 		"fields": {
 			"title": "천국의 그림자",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 35,
-					"name": "코미디"
-				}
+				18,
+				35
 			],
 			"original_title": "Varjoja paratiisissa",
 			"original_language": "fi",
@@ -33,14 +27,8 @@
 		"fields": {
 			"title": "포룸",
 			"genres": [
-				{
-					"id": 80,
-					"name": "범죄"
-				},
-				{
-					"id": 35,
-					"name": "코미디"
-				}
+				80,
+				35
 			],
 			"original_title": "Four Rooms",
 			"original_language": "en",
@@ -61,18 +49,9 @@
 		"fields": {
 			"title": "킬러 나이트",
 			"genres": [
-				{
-					"id": 28,
-					"name": "액션"
-				},
-				{
-					"id": 53,
-					"name": "스릴러"
-				},
-				{
-					"id": 80,
-					"name": "범죄"
-				}
+				28,
+				53,
+				80
 			],
 			"original_title": "Judgment Night",
 			"original_language": "en",
@@ -93,14 +72,8 @@
 		"fields": {
 			"title": "니모를 찾아서",
 			"genres": [
-				{
-					"id": 16,
-					"name": "애니메이션"
-				},
-				{
-					"id": 10751,
-					"name": "가족"
-				}
+				16,
+				10751
 			],
 			"original_title": "Finding Nemo",
 			"original_language": "en",
@@ -121,18 +94,9 @@
 		"fields": {
 			"title": "포레스트 검프",
 			"genres": [
-				{
-					"id": 35,
-					"name": "코미디"
-				},
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 10749,
-					"name": "로맨스"
-				}
+				35,
+				18,
+				10749
 			],
 			"original_title": "Forrest Gump",
 			"original_language": "en",
@@ -153,10 +117,7 @@
 		"fields": {
 			"title": "아메리칸 뷰티",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				}
+				18
 			],
 			"original_title": "American Beauty",
 			"original_language": "en",
@@ -177,14 +138,8 @@
 		"fields": {
 			"title": "어둠 속의 댄서",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 80,
-					"name": "범죄"
-				}
+				18,
+				80
 			],
 			"original_title": "Dancer in the Dark",
 			"original_language": "en",
@@ -205,26 +160,11 @@
 		"fields": {
 			"title": "제5원소",
 			"genres": [
-				{
-					"id": 12,
-					"name": "모험"
-				},
-				{
-					"id": 14,
-					"name": "판타지"
-				},
-				{
-					"id": 28,
-					"name": "액션"
-				},
-				{
-					"id": 53,
-					"name": "스릴러"
-				},
-				{
-					"id": 878,
-					"name": "SF"
-				}
+				12,
+				14,
+				28,
+				53,
+				878
 			],
 			"original_title": "The Fifth Element",
 			"original_language": "en",
@@ -245,14 +185,8 @@
 		"fields": {
 			"title": "나 없는 내 인생",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 10749,
-					"name": "로맨스"
-				}
+				18,
+				10749
 			],
 			"original_title": "My Life Without Me",
 			"original_language": "en",
@@ -273,18 +207,9 @@
 		"fields": {
 			"title": "캐리비안의 해적: 블랙펄의 저주",
 			"genres": [
-				{
-					"id": 12,
-					"name": "모험"
-				},
-				{
-					"id": 14,
-					"name": "판타지"
-				},
-				{
-					"id": 28,
-					"name": "액션"
-				}
+				12,
+				14,
+				28
 			],
 			"original_title": "Pirates of the Caribbean: The Curse of the Black Pearl",
 			"original_language": "en",
@@ -305,14 +230,8 @@
 		"fields": {
 			"title": "킬 빌: 1부",
 			"genres": [
-				{
-					"id": 28,
-					"name": "액션"
-				},
-				{
-					"id": 80,
-					"name": "범죄"
-				}
+				28,
+				80
 			],
 			"original_title": "Kill Bill: Vol. 1",
 			"original_language": "en",
@@ -323,7 +242,7 @@
 			"release_date": "2003-10-10",
 			"runtime": 111,
 			"vote_average": 8.0,
-			"video": "kgRlzeYc1nk",
+			"video": "499Aiwh_If0",
 			"backdrop_path": "/lVy5Zqcty2NfemqKYbVJfdg44rK.jpg"
 		}
 	},
@@ -333,14 +252,8 @@
 		"fields": {
 			"title": "자헤드: 그들만의 전쟁",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 10752,
-					"name": "전쟁"
-				}
+				18,
+				10752
 			],
 			"original_title": "Jarhead",
 			"original_language": "en",
@@ -361,18 +274,9 @@
 		"fields": {
 			"title": "나인 송즈",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 10402,
-					"name": "음악"
-				},
-				{
-					"id": 10749,
-					"name": "로맨스"
-				}
+				18,
+				10402,
+				10749
 			],
 			"original_title": "9 Songs",
 			"original_language": "en",
@@ -393,10 +297,7 @@
 		"fields": {
 			"title": "용서받지 못한 자",
 			"genres": [
-				{
-					"id": 37,
-					"name": "서부"
-				}
+				37
 			],
 			"original_title": "Unforgiven",
 			"original_language": "en",
@@ -417,18 +318,9 @@
 		"fields": {
 			"title": "심슨 가족: 더 무비",
 			"genres": [
-				{
-					"id": 16,
-					"name": "애니메이션"
-				},
-				{
-					"id": 35,
-					"name": "코미디"
-				},
-				{
-					"id": 10751,
-					"name": "가족"
-				}
+				16,
+				35,
+				10751
 			],
 			"original_title": "The Simpsons Movie",
 			"original_language": "en",
@@ -449,18 +341,9 @@
 		"fields": {
 			"title": "이터널 선샤인",
 			"genres": [
-				{
-					"id": 878,
-					"name": "SF"
-				},
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 10749,
-					"name": "로맨스"
-				}
+				878,
+				18,
+				10749
 			],
 			"original_title": "Eternal Sunshine of the Spotless Mind",
 			"original_language": "en",
@@ -471,7 +354,7 @@
 			"release_date": "2004-03-19",
 			"runtime": 108,
 			"vote_average": 8.1,
-			"video": "xziZKDefKRI",
+			"video": "dpAoVOU-q60",
 			"backdrop_path": "/ibw3MvF2GLHVcPJd2PDtOQcMDPq.jpg"
 		}
 	},
@@ -481,14 +364,8 @@
 		"fields": {
 			"title": "아모레스 페로스",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 53,
-					"name": "스릴러"
-				}
+				18,
+				53
 			],
 			"original_title": "Amores perros",
 			"original_language": "es",
@@ -509,18 +386,9 @@
 		"fields": {
 			"title": "캐리비안의 해적: 망자의 함",
 			"genres": [
-				{
-					"id": 12,
-					"name": "모험"
-				},
-				{
-					"id": 14,
-					"name": "판타지"
-				},
-				{
-					"id": 28,
-					"name": "액션"
-				}
+				12,
+				14,
+				28
 			],
 			"original_title": "Pirates of the Caribbean: Dead Man's Chest",
 			"original_language": "en",
@@ -541,18 +409,9 @@
 		"fields": {
 			"title": "폭력의 역사",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 53,
-					"name": "스릴러"
-				},
-				{
-					"id": 80,
-					"name": "범죄"
-				}
+				18,
+				53,
+				80
 			],
 			"original_title": "A History of Violence",
 			"original_language": "en",
@@ -573,18 +432,9 @@
 		"fields": {
 			"title": "12 몽키즈",
 			"genres": [
-				{
-					"id": 878,
-					"name": "SF"
-				},
-				{
-					"id": 53,
-					"name": "스릴러"
-				},
-				{
-					"id": 9648,
-					"name": "미스터리"
-				}
+				878,
+				53,
+				9648
 			],
 			"original_title": "Twelve Monkeys",
 			"original_language": "en",
@@ -605,14 +455,8 @@
 		"fields": {
 			"title": "그녀에게",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 10749,
-					"name": "로맨스"
-				}
+				18,
+				10749
 			],
 			"original_title": "Hable con ella",
 			"original_language": "es",
@@ -633,14 +477,8 @@
 		"fields": {
 			"title": "8 마일",
 			"genres": [
-				{
-					"id": 10402,
-					"name": "음악"
-				},
-				{
-					"id": 18,
-					"name": "드라마"
-				}
+				10402,
+				18
 			],
 			"original_title": "8 Mile",
 			"original_language": "en",
@@ -661,18 +499,9 @@
 		"fields": {
 			"title": "앱솔루트 파워",
 			"genres": [
-				{
-					"id": 80,
-					"name": "범죄"
-				},
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 28,
-					"name": "액션"
-				}
+				80,
+				18,
+				28
 			],
 			"original_title": "Absolute Power",
 			"original_language": "en",
@@ -693,18 +522,9 @@
 		"fields": {
 			"title": "천국을 향하여",
 			"genres": [
-				{
-					"id": 53,
-					"name": "스릴러"
-				},
-				{
-					"id": 80,
-					"name": "범죄"
-				},
-				{
-					"id": 18,
-					"name": "드라마"
-				}
+				53,
+				80,
+				18
 			],
 			"original_title": "Paradise Now",
 			"original_language": "en",
@@ -725,14 +545,8 @@
 		"fields": {
 			"title": "브라질",
 			"genres": [
-				{
-					"id": 35,
-					"name": "코미디"
-				},
-				{
-					"id": 878,
-					"name": "SF"
-				}
+				35,
+				878
 			],
 			"original_title": "Brazil",
 			"original_language": "en",
@@ -753,18 +567,9 @@
 		"fields": {
 			"title": "앙코르",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 10402,
-					"name": "음악"
-				},
-				{
-					"id": 10749,
-					"name": "로맨스"
-				}
+				18,
+				10402,
+				10749
 			],
 			"original_title": "Walk the Line",
 			"original_language": "en",
@@ -785,10 +590,7 @@
 		"fields": {
 			"title": "밀리언 달러 베이비",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				}
+				18
 			],
 			"original_title": "Million Dollar Baby",
 			"original_language": "en",
@@ -809,18 +611,9 @@
 		"fields": {
 			"title": "빌리 엘리어트",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 35,
-					"name": "코미디"
-				},
-				{
-					"id": 10402,
-					"name": "음악"
-				}
+				18,
+				35,
+				10402
 			],
 			"original_title": "Billy Elliot",
 			"original_language": "en",
@@ -841,10 +634,7 @@
 		"fields": {
 			"title": "아메리칸 히스토리 X",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				}
+				18
 			],
 			"original_title": "American History X",
 			"original_language": "en",
@@ -865,18 +655,9 @@
 		"fields": {
 			"title": "우주전쟁",
 			"genres": [
-				{
-					"id": 12,
-					"name": "모험"
-				},
-				{
-					"id": 53,
-					"name": "스릴러"
-				},
-				{
-					"id": 878,
-					"name": "SF"
-				}
+				12,
+				53,
+				878
 			],
 			"original_title": "War of the Worlds",
 			"original_language": "en",
@@ -897,18 +678,9 @@
 		"fields": {
 			"title": "화성침공",
 			"genres": [
-				{
-					"id": 35,
-					"name": "코미디"
-				},
-				{
-					"id": 14,
-					"name": "판타지"
-				},
-				{
-					"id": 878,
-					"name": "SF"
-				}
+				35,
+				14,
+				878
 			],
 			"original_title": "Mars Attacks!",
 			"original_language": "en",
@@ -929,14 +701,8 @@
 		"fields": {
 			"title": "비포 선라이즈",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 10749,
-					"name": "로맨스"
-				}
+				18,
+				10749
 			],
 			"original_title": "Before Sunrise",
 			"original_language": "en",
@@ -957,14 +723,8 @@
 		"fields": {
 			"title": "메멘토",
 			"genres": [
-				{
-					"id": 9648,
-					"name": "미스터리"
-				},
-				{
-					"id": 53,
-					"name": "스릴러"
-				}
+				9648,
+				53
 			],
 			"original_title": "Memento",
 			"original_language": "en",
@@ -985,18 +745,9 @@
 		"fields": {
 			"title": "블레이드 러너",
 			"genres": [
-				{
-					"id": 878,
-					"name": "SF"
-				},
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 53,
-					"name": "스릴러"
-				}
+				878,
+				18,
+				53
 			],
 			"original_title": "Blade Runner",
 			"original_language": "en",
@@ -1017,22 +768,10 @@
 		"fields": {
 			"title": "영웅",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 12,
-					"name": "모험"
-				},
-				{
-					"id": 28,
-					"name": "액션"
-				},
-				{
-					"id": 36,
-					"name": "역사"
-				}
+				18,
+				12,
+				28,
+				36
 			],
 			"original_title": "英雄",
 			"original_language": "zh",
@@ -1053,14 +792,8 @@
 		"fields": {
 			"title": "비포 선셋",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 10749,
-					"name": "로맨스"
-				}
+				18,
+				10749
 			],
 			"original_title": "Before Sunset",
 			"original_language": "en",
@@ -1081,18 +814,9 @@
 		"fields": {
 			"title": "바람계곡의 나우시카",
 			"genres": [
-				{
-					"id": 12,
-					"name": "모험"
-				},
-				{
-					"id": 16,
-					"name": "애니메이션"
-				},
-				{
-					"id": 14,
-					"name": "판타지"
-				}
+				12,
+				16,
+				14
 			],
 			"original_title": "風の谷のナウシカ",
 			"original_language": "ja",
@@ -1113,18 +837,9 @@
 		"fields": {
 			"title": "마이애미 바이스",
 			"genres": [
-				{
-					"id": 28,
-					"name": "액션"
-				},
-				{
-					"id": 80,
-					"name": "범죄"
-				},
-				{
-					"id": 53,
-					"name": "스릴러"
-				}
+				28,
+				80,
+				53
 			],
 			"original_title": "Miami Vice",
 			"original_language": "en",
@@ -1145,18 +860,9 @@
 		"fields": {
 			"title": "오픈 워터",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 53,
-					"name": "스릴러"
-				},
-				{
-					"id": 27,
-					"name": "공포"
-				}
+				18,
+				53,
+				27
 			],
 			"original_title": "Open Water",
 			"original_language": "en",
@@ -1177,14 +883,8 @@
 		"fields": {
 			"title": "인디아나 존스 : 레이더스",
 			"genres": [
-				{
-					"id": 12,
-					"name": "모험"
-				},
-				{
-					"id": 28,
-					"name": "액션"
-				}
+				12,
+				28
 			],
 			"original_title": "Raiders of the Lost Ark",
 			"original_language": "en",
@@ -1195,7 +895,7 @@
 			"release_date": "1981-06-12",
 			"runtime": 115,
 			"vote_average": 7.9,
-			"video": "_RmmbPdckSg",
+			"video": "jj7eN9avhEc",
 			"backdrop_path": "/kCiMExsYuNhYluHxPP2OTmWw7hp.jpg"
 		}
 	},
@@ -1205,14 +905,8 @@
 		"fields": {
 			"title": "소립자",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 10749,
-					"name": "로맨스"
-				}
+				18,
+				10749
 			],
 			"original_title": "Elementarteilchen",
 			"original_language": "de",
@@ -1233,14 +927,8 @@
 		"fields": {
 			"title": "인디아나 존스: 마궁의 사원",
 			"genres": [
-				{
-					"id": 12,
-					"name": "모험"
-				},
-				{
-					"id": 28,
-					"name": "액션"
-				}
+				12,
+				28
 			],
 			"original_title": "Indiana Jones and the Temple of Doom",
 			"original_language": "en",
@@ -1261,18 +949,9 @@
 		"fields": {
 			"title": "더티 댄싱",
 			"genres": [
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 10402,
-					"name": "음악"
-				},
-				{
-					"id": 10749,
-					"name": "로맨스"
-				}
+				18,
+				10402,
+				10749
 			],
 			"original_title": "Dirty Dancing",
 			"original_language": "en",
@@ -1293,14 +972,8 @@
 		"fields": {
 			"title": "인디아나 존스: 최후의 성전",
 			"genres": [
-				{
-					"id": 12,
-					"name": "모험"
-				},
-				{
-					"id": 28,
-					"name": "액션"
-				}
+				12,
+				28
 			],
 			"original_title": "Indiana Jones and the Last Crusade",
 			"original_language": "en",
@@ -1321,18 +994,9 @@
 		"fields": {
 			"title": "비버리 힐스 캅",
 			"genres": [
-				{
-					"id": 28,
-					"name": "액션"
-				},
-				{
-					"id": 35,
-					"name": "코미디"
-				},
-				{
-					"id": 80,
-					"name": "범죄"
-				}
+				28,
+				35,
+				80
 			],
 			"original_title": "Beverly Hills Cop",
 			"original_language": "en",
@@ -1353,22 +1017,10 @@
 		"fields": {
 			"title": "아마겟돈",
 			"genres": [
-				{
-					"id": 28,
-					"name": "액션"
-				},
-				{
-					"id": 53,
-					"name": "스릴러"
-				},
-				{
-					"id": 878,
-					"name": "SF"
-				},
-				{
-					"id": 12,
-					"name": "모험"
-				}
+				28,
+				53,
+				878,
+				12
 			],
 			"original_title": "Armageddon",
 			"original_language": "en",
@@ -1379,7 +1031,7 @@
 			"release_date": "1998-07-01",
 			"runtime": 151,
 			"vote_average": 6.8,
-			"video": "pCWKG2HVqRE",
+			"video": "SsjVBE5bE60",
 			"backdrop_path": "/sODk4VuMTt8S56zYFOr1Kx8BFqu.jpg"
 		}
 	},
@@ -1389,18 +1041,9 @@
 		"fields": {
 			"title": "비버리 힐스 캅 2",
 			"genres": [
-				{
-					"id": 28,
-					"name": "액션"
-				},
-				{
-					"id": 35,
-					"name": "코미디"
-				},
-				{
-					"id": 80,
-					"name": "범죄"
-				}
+				28,
+				35,
+				80
 			],
 			"original_title": "Beverly Hills Cop II",
 			"original_language": "en",
@@ -1421,18 +1064,9 @@
 		"fields": {
 			"title": "트론",
 			"genres": [
-				{
-					"id": 878,
-					"name": "SF"
-				},
-				{
-					"id": 28,
-					"name": "액션"
-				},
-				{
-					"id": 12,
-					"name": "모험"
-				}
+				878,
+				28,
+				12
 			],
 			"original_title": "Tron",
 			"original_language": "en",
@@ -1453,18 +1087,9 @@
 		"fields": {
 			"title": "글래디에이터",
 			"genres": [
-				{
-					"id": 28,
-					"name": "액션"
-				},
-				{
-					"id": 18,
-					"name": "드라마"
-				},
-				{
-					"id": 12,
-					"name": "모험"
-				}
+				28,
+				18,
+				12
 			],
 			"original_title": "Gladiator",
 			"original_language": "en",
@@ -1475,7 +1100,7 @@
 			"release_date": "2000-05-01",
 			"runtime": 154,
 			"vote_average": 8.2,
-			"video": "owK1qxDselE",
+			"video": "AxQajgTyLcM",
 			"backdrop_path": "/aZtwH3RQ0L8jbInxr7OSc9tlGMJ.jpg"
 		}
 	},
@@ -1485,14 +1110,8 @@
 		"fields": {
 			"title": "내 어머니의 모든 것",
 			"genres": [
-				{
-					"id": 35,
-					"name": "코미디"
-				},
-				{
-					"id": 18,
-					"name": "드라마"
-				}
+				35,
+				18
 			],
 			"original_title": "Todo sobre mi madre",
 			"original_language": "es",

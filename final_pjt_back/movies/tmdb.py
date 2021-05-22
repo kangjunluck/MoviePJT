@@ -26,11 +26,11 @@
 #             return movie.get('results')[0].get('id')
 #         else:
 #             return None
+from os import name
 import requests
 import json
 from collections import OrderedDict
 from pprint import pprint
-
 
 apikey = 'f9d6437bdf11eed5c220387d6687f409'
 movie_list = range(0, 100)
@@ -42,21 +42,31 @@ for num in movie_list:
         url = "https://api.themoviedb.org/3/movie/{}?api_key={}&language=ko-kr".format(num, apikey)
         r = requests.get(url)
         data = json.loads(r.text)
-        pprint(data)
+        # pprint(data)
         video_url = "https://api.themoviedb.org/3/movie/{}/videos?api_key={}".format(num, apikey)
         video_r = requests.get(video_url)
         video_data = json.loads(video_r.text)
-        print(video_data)
+        # print(video_data)
         video_id = video_data["results"][-1]["key"]
+        
+        
+        genre_datas = data["genres"]
+        genre_ids = []
+        for datas in genre_datas:
+            genre_ids.append(datas["id"])
 
-        print(num)
 
+        
+        # print(genre_ids) 
+
+        
         if len(data["overview"]) > 10 and int(data["release_date"][:4]) >= 1980 and len(data["poster_path"]) > 10 and len(data["backdrop_path"]) > 10:
+            print("??")
             file_data['model'] = 'movies.movie'
             file_data["pk"] = cnt
             file_data['fields'] = {
                 "title": data["title"],
-                "genres" : data["genres"],
+                "genres" : genre_ids,
                 "original_title" : data["original_title"],
                 "original_language" : data["original_language"],
                 "overview" : data["overview"],
@@ -65,13 +75,12 @@ for num in movie_list:
                 "poster_path" : data["poster_path"],
                 "release_date" : data["release_date"],
                 "runtime" : data["runtime"],
-                "vote_average" : data["vote_average"],           
+                "vote_average" : data["vote_average"],
                 "video" : video_id,
                 "backdrop_path" : data["backdrop_path"],
             }
             mylist.append(file_data)
             cnt += 1
-
     except:
         pass
     
