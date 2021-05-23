@@ -3,6 +3,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer
 
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
 
 @api_view(['POST'])
 def signup(request):
@@ -25,4 +29,20 @@ def signup(request):
         user.save()
     # password는 직렬화 과정에는 포함 되지만 → 표현(response)할 때는 나타나지 않는다.
     return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def userid(request):
+    user = request.user
+    print(user.articles.all)
+    data = {
+        'userid': user.id,   
+        'username': user.username,
+        # 'articles': user.articles.all  
+    }
+    # serializer = UserSerializer(data=request.user)
+    # print(serializer)
+    return Response(data)
+    
 

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <span v-if="isLogin">
+      <span v-if="isLogin">        
         <router-link :to="{ name: 'Home' }">Home</router-link> |
         <router-link :to="{ name: 'Profile' }">Profile</router-link> |
         <router-link :to="{ name: 'Similar' }">Similar</router-link> |

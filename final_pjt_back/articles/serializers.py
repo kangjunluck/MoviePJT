@@ -21,6 +21,8 @@ class ArticleCutSerializer(serializers.ModelSerializer):
 
 class ArticleSerializer(serializers.ModelSerializer):
     comment_set = CommentListSerializer(many=True, read_only=True)
+    userid = serializers.IntegerField(source='user.id', read_only=True)
+    username = serializers.CharField(source='user.username', read_only=True)
     class Meta:
         model = Article
         fields = '__all__'

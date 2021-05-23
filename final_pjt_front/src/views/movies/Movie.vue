@@ -2,10 +2,38 @@
   <div class="home">
     <h1>Movie</h1>
     <div class='container'>
+      <div class="btn btn-primary" @click.prevent="getMovies">전체영화조회</div>
       <div class="row">
         <div class="col-2">
-          <div class="btn btn-primary" @click.prevent="actionFilter">액션</div>
-          <div class="btn btn-primary">SF</div>
+          <div class="w-100 btn-group btn-group-sm btn-group-vertical" role="group">
+            <button class="btn b-panel" style="background-color: rgba(255, 255, 255, 0.1);" type="button" data-toggle="collapse" data-target="#collapseExample" aria-controls="collapseExample">
+              장르 필터 
+            </button>
+            <div class="collapse mt-2 " id="collapseExample">     
+              <div class="btn btn-primary" @click.prevent="genreFilter(28)">액션</div>
+              <div class="btn btn-primary" @click.prevent="genreFilter(12)">모험</div>
+              <label class="btn col text-left" style="background-color: rgba(255, 255, 255, 0.1);">
+                <input type="checkbox" name="list_genre" value="액션"><label>액션</label>
+              </label> 
+            </div>        
+          </div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(28)">액션</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(12)">모험</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(35)">코미디</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(80)">범죄</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(99)">다큐멘터리</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(10751)">가족</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(14)">판타지</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(36)">역사</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(27)">공포</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(10402)">음악</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(9648)">미스터리</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(10749)">로맨스</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(878)">SF</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(10700)">TV 영화</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(53)">스릴러</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(10752)">전쟁</div>
+          <div class="btn btn-primary" @click.prevent="genreFilter(37)">서부</div>          
         </div>
         <div class="col-10">
           <div class="container">
@@ -72,7 +100,7 @@ export default {
     },
 
     // 정렬 함수 ---------------------------------------
-    actionFilter () {
+    genreFilter (genreId) {
       const myPromise = new Promise((resolve, reject) => {
         axios({
           method: 'get',
@@ -94,7 +122,7 @@ export default {
         this.movies.forEach((movie)=>{
           const genres = movie.genres
           for (const genre of genres) {
-            if (genre === 28) {
+            if (genre === genreId) {
               newMovies.push(movie)
             }
           }

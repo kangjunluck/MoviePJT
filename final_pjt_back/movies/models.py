@@ -20,9 +20,9 @@ class Movie(models.Model):
     release_date = models.DateField()
     runtime = models.CharField(max_length=5)
     vote_average = models.CharField(max_length=5)
-    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies', blank=True)
     video = models.CharField(max_length=500)
     backdrop_path = models.CharField(max_length=500)
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies', blank=True)
     def set_genres(self):
         return json.loads(self.genres)
 
@@ -30,4 +30,5 @@ class Review(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()    
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 

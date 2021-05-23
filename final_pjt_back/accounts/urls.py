@@ -7,4 +7,5 @@ from . import views
 urlpatterns = [
     path('signup/', views.signup),
     path('login/', obtain_jwt_token),
+    path('userid/', views.userid),
 ]

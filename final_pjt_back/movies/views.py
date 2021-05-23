@@ -1,6 +1,11 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import render, get_list_or_404, get_object_or_404
+from rest_framework import status
+
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .models import Movie, Review
 from .serializers import (
@@ -37,11 +42,13 @@ def review_list(request):
 
 # 리뷰 생성
 @api_view(['POST'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def review_create(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     serializer = ReviewSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        serializer.save(movie=movie)
+        serializer.save(movie=movie, user=request.user)
         return Response(serializer.data)
 
 # 상세 리뷰 정보, 리뷰 수정, 리뷰 삭제
@@ -66,3 +73,23 @@ def review_detail(request, review_pk):
         }
         return Response(data)
 
+
+# 영화 좋아요
+# @require_POST
+
+# def like(request, review_pk):
+#     context = {}
+#     if request.user.is_authenticated:
+#         review = get_object_or_404(Review, pk=review_pk)
+#         user = request.user
+        
+#         if review.like_users.filter(pk=user.pk).exists():
+#             review.like_users.remove(user)
+#             context['like'] = False
+#         else:
+#             review.like_users.add(user)
+#             context['like'] = True
+        
+#         context['counts'] = review.like_users.count()
+
+#     return JsonResponse(context)

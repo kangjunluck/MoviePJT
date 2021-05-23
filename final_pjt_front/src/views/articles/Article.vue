@@ -6,7 +6,10 @@
       <li v-for="(article, idx) in articles" :key="idx">
         <p>제목 : <span class="article-item" @click="moveDetail(article)" >{{ article.title }}</span></p>
         <p>내용 : <span  :class="{ completed: article.completed }">{{ article.content }}</span></p>
-        <button @click="deleteArticle(article)" class="article-btn">X</button>
+        <p>글쓴이 : <span>{{ article.username }} {{ article.userid }} {{ userId }}</span></p>
+        <div v-if="article.userid === userId">              
+          <button @click="deleteArticle(article)" class="article-btn">X</button>
+        </div>
         <hr>
       </li>
     </ul>
@@ -21,6 +24,7 @@ export default {
   data: function () {
     return {
       articles: null,
+      userId: null,
     }
   },
   methods: {
@@ -31,7 +35,21 @@ export default {
       }
       return config
     },
-
+    getUserId () {
+      axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/accounts/userid/',
+        headers: this.setToken()
+      })
+        .then((res) => {
+          console.log(res)
+          console.log('res')
+          this.userId = res.data.userid
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
     getArticles: function () {
       axios({
         method: 'get',
@@ -39,7 +57,7 @@ export default {
         headers: this.setToken()
       })
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           this.articles = res.data
         })
         .catch((err) => {
@@ -90,6 +108,7 @@ export default {
 
   created: function () {
     if (localStorage.getItem('jwt')) {
+      this.getUserId()
       this.getArticles()
     } else {
       this.$router.push({name: 'Login'})

@@ -19,8 +19,8 @@ from .models import Article, Comment
 @permission_classes([IsAuthenticated])
 def article_list_create(request):
     if request.method == 'GET':
-        # articles = Article.objects.all()
-        serializer = ArticleSerializer(request.user.articles, many=True)
+        articles = Article.objects.all()
+        serializer = ArticleSerializer(articles, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
@@ -38,6 +38,9 @@ def article_list_create(request):
 def article_update_delete(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
 
+    if request.method == 'GET':
+        serializer = ArticleSerializer(article)
+        return Response(serializer.data)
     # 1. 해당 article의 유저가 아닌 경우 article를 수정하거나 삭제하지 못하게 설정
     if not request.user.articles.filter(pk=article_pk).exists():
         return Response({'detail': '권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
@@ -54,9 +57,6 @@ def article_update_delete(request, article_pk):
         article.delete()
         return Response({ 'id': article_pk }, status=status.HTTP_204_NO_CONTENT)
 
-    elif request.method == 'GET':
-        serializer = ArticleSerializer(article)
-        return Response(serializer.data)
 
 
 
