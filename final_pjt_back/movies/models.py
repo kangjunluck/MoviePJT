@@ -8,8 +8,6 @@ class Genre(models.Model):
 class Movie(models.Model):
     # movieid = models.CharField(max_length=20, unique=True)
     title = models.CharField(max_length=100)
-    # genres = models.CharField(max_length=200)
-    # genres = models.JSONField(default=dict) 
     genres = models.ManyToManyField(Genre)   
     original_title = models.CharField(max_length=200)
     original_language = models.CharField(max_length=10)
@@ -30,5 +28,5 @@ class Review(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()    
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reviews')
 

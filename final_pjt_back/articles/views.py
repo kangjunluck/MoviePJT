@@ -73,11 +73,28 @@ def comment_create(request, article_pk):
         serializer.save(article=article, user=request.user)
         return Response(serializer.data)
 
-
 # 전체 댓글 조회
 @api_view(['GET'])
 def comment_list(request):
     comments = get_list_or_404(Comment)
     serializer = CommentListSerializer(comments, many=True)
     return Response(serializer.data)
-    
+
+# 댓글 수정, 삭제
+@api_view(['PUT', 'DELETE'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def comment_update_delete(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    if not request.user.comments.filter(pk=comment_pk).exists():
+        return Response({'detail': '권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
+
+    if request.method == 'PUT':
+        serializer = CommentListSerializer(comment, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+
+    elif request.method == 'DELETE':
+        comment.delete()
+        return Response({ 'id': comment_pk }, status=status.HTTP_204_NO_CONTENT)

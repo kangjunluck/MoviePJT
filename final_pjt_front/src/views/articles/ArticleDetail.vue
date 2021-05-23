@@ -5,6 +5,7 @@
     {{ newcontent }}
     <div v-if="newUserId === userId">
       <button @click="moveUpdate">수정</button>
+      <button @click="deleteArticle">삭제</button>
     </div>
     <hr>
     <h2>Comment</h2>
@@ -81,6 +82,20 @@ export default {
           id: this.id,
         }
       })
+    },
+    deleteArticle: function () {
+      axios({
+        method: 'delete',
+        url: `http://127.0.0.1:8000/articles/${this.id}/`,
+        headers: this.setToken()
+      })
+        .then((res) => {
+          console.log(res)
+          this.$router.push({name: 'Article'})
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
     getComments() {
       axios({

@@ -1,10 +1,23 @@
 <template>
   <div class="home">
-    Profile
-    <br>
-    userpk: {{userId}}
-    <br>
-    user: {{userName}}
+    <h1>{{username}}의 Profile</h1>
+    <hr>
+    <h3>내가 쓴 article</h3>
+    
+    <p v-for="article in articles" :key="article.pk">
+      <router-link :to="{ name: 'ArticleDetail', params: { article_id: article.id } }">{{ article.title }}</router-link>
+    </p>
+    <hr>
+    <h3>내가 쓴 review</h3>
+    <p v-for="review in reviews" :key="review.pk">
+      <router-link :to="{ name: 'MovieDetail', params: { movie_id: review.movie_id } }">{{ review.title }}</router-link>
+    </p>
+    <hr>
+    <h3>내가 쓴 comment</h3>
+    <p v-for="comment in comments" :key="comment.pk">
+      <router-link :to="{ name: 'ArticleDetail', params: { article_id: comment.article_id } }">{{ comment.content }}</router-link>
+    </p>
+
   </div>
 </template>
 
@@ -16,8 +29,10 @@ export default {
   name: 'Profile',
   data: function () {
     return {      
-      userId: null,
-      userName: null,
+      username: null,
+      articles: null,
+      comments: null,
+      reviews: null,
     }
   },
   methods: {
@@ -36,9 +51,10 @@ export default {
       })
         .then((res) => {
           console.log(res)
-          console.log('res')
-          this.userId = res.data.userid
-          this.userName = res.data.username
+          this.articles = res.data.articles
+          this.reviews = res.data.reviews
+          this.comments = res.data.comments
+          this.username = res.data.username
         })
         .catch((err) => {
           console.log(err)

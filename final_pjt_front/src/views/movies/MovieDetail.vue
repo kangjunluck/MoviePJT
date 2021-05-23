@@ -1,18 +1,20 @@
 <template>
   <div>
     <h2>Movie Detail</h2>
-    <h3>{{ movie.title }}</h3>
-    <p>{{ movie.overview }}</p>
-    <hr>
-    <h3>Review</h3>
-    <ul>
-      <li v-for="review in reviews" :key="review.id">{{ review.title }}</li>
-    </ul>
-    <form>
-      <p>title : <input type="text" v-model="review_title"></p>
-      <p>내용 : <input type="text" v-model="review_content"></p>
-      <button @click.prevent="reviewCreate">+</button>
-    </form>
+    <div v-if="movie">
+      <h3>{{ movie.title }}</h3>
+      <p>{{ movie.overview }}</p>
+      <hr>
+      <h3>Review</h3>
+      <ul>
+        <li v-for="review in reviews" :key="review.id">{{ review.title }}</li>
+      </ul>
+      <form>
+        <p>title : <input type="text" v-model="review_title"></p>
+        <p>내용 : <input type="text" v-model="review_content"></p>
+        <button @click.prevent="reviewCreate">+</button>
+      </form>
+    </div>
 
   </div>
 </template>

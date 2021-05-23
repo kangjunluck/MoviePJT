@@ -7,6 +7,9 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
+from django.http import JsonResponse
+from django.contrib.auth import get_user_model
+from django.shortcuts import render, redirect, get_object_or_404
 
 @api_view(['POST'])
 def signup(request):
@@ -35,14 +38,17 @@ def signup(request):
 @permission_classes([IsAuthenticated])
 def userid(request):
     user = request.user
-    print(user.articles.all)
+    articles = list(user.articles.all().values())
+    reviews = list(user.reviews.all().values())
+    comments = list(user.comments.all().values())
     data = {
-        'userid': user.id,   
+        'articles': articles,
         'username': user.username,
-        # 'articles': user.articles.all  
+        'comments': comments,
+        'reviews': reviews,
+        'userid': user.id,
     }
-    # serializer = UserSerializer(data=request.user)
-    # print(serializer)
     return Response(data)
+        
     
 

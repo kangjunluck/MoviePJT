@@ -7,9 +7,6 @@
         <p>제목 : <span class="article-item" @click="moveDetail(article)" >{{ article.title }}</span></p>
         <p>내용 : <span  :class="{ completed: article.completed }">{{ article.content }}</span></p>
         <p>글쓴이 : <span>{{ article.username }} {{ article.userid }} {{ userId }}</span></p>
-        <div v-if="article.userid === userId">              
-          <button @click="deleteArticle(article)" class="article-btn">X</button>
-        </div>
         <hr>
       </li>
     </ul>
@@ -43,7 +40,6 @@ export default {
       })
         .then((res) => {
           console.log(res)
-          console.log('res')
           this.userId = res.data.userid
         })
         .catch((err) => {
@@ -59,20 +55,6 @@ export default {
         .then((res) => {
           // console.log(res)
           this.articles = res.data
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
-    deleteArticle: function (article) {
-      axios({
-        method: 'delete',
-        url: `http://127.0.0.1:8000/articles/${article.id}/`,
-        headers: this.setToken()
-      })
-        .then((res) => {
-          console.log(res)
-          this.getArticles()
         })
         .catch((err) => {
           console.log(err)
