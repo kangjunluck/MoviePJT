@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>Movie</h1>
+    <input type="text">
     <div class='container'>
       <div class="btn btn-primary" @click.prevent="getMovies">전체영화조회</div>
       <div class="row">

@@ -4,6 +4,21 @@
     <div v-if="movie">
       <h3>{{ movie.title }}</h3>
       <p>{{ movie.overview }}</p>
+      <p>이 영화를 좋아하는 사람은 {{ likeCnt }}명 </p>
+      <form id="like-form">
+        <div v-if="!likeUsers.includes(userId)">
+          <button  class="btn btn-link" @click.prevent="onLike(movie)">
+            <i class="fas fa-heart fa-lg" style="color:black;"></i>
+          </button>
+        </div>
+        <div v-else>
+          <button  class="btn btn-link" @click.prevent="onLike(movie)">
+            <i class="fas fa-heart fa-lg" style="color:crimson;"></i>
+          </button>
+        </div>
+      
+
+      </form>
       <hr>
       <h3>Review</h3>
       <ul>
@@ -27,10 +42,14 @@ export default {
   data () {
     return {
       id: this.$route.params.movie_id,
+      userId: null,
       movie: null,
       reviews: null,
       review_title : '',
       review_content : '',
+
+      likeCnt: null,
+      likeUsers: [],
     }
   },
   methods: {
@@ -41,6 +60,20 @@ export default {
       }
       return config
     },
+    getUserId () {
+      axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/accounts/userid/',
+        headers: this.setToken()
+      })
+        .then((res) => {
+          console.log(res)
+          this.userId = res.data.userid
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
     getMovie() {
       axios({
         method: 'get',
@@ -50,6 +83,8 @@ export default {
         .then((res) => {
           console.log(res)
           this.movie = res.data
+          this.likeCnt = res.data.like_users.length
+          this.likeUsers = res.data.like_users
         })
         .catch((err) => {
           console.log(err)
@@ -91,10 +126,26 @@ export default {
           })
       }
     },
+    onLike (movie) {
+      axios({
+        method: 'post',
+        url: `http://127.0.0.1:8000/movies/${movie.id}/like/`,
+        headers: this.setToken()
+      })
+        .then((res) => {
+          console.log(res)
+          this.likeCnt = res.data.counts
+          this.getMovie()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
   },
   created () {
     this.getMovie()
     this.getReviews()
+    this.getUserId()
   },
 }
 </script>

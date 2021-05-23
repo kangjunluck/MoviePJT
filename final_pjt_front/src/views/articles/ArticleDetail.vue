@@ -10,7 +10,23 @@
     <hr>
     <h2>Comment</h2>
     <ul>
-      <li v-for="comment in comments" :key="comment.id">{{ comment.content }}<br>{{ comment.created_at }}<br>{{ comment.updated_at }}</li>
+      <li v-for="comment in comments" :key="comment.id">
+        <div v-if="comment.completed">
+          <input type="text" v-model="comment.content">
+          <button @click.prevent="updateComment(comment)">완료</button>
+        </div>
+        <div v-else>
+          {{ comment.content }}<br>
+          {{ comment.created_at }}<br>
+          {{ comment.updated_at }}<br>
+          <div v-if="comment.user === userId">
+            <button @click.prevent="updateComment(comment)">수정</button>
+          </div>
+        </div>
+        <div v-if="comment.user === userId">
+          <button @click.prevent="deleteComment(comment)">삭제</button>
+        </div>
+      </li>
     </ul>
     <form>
       <p>내용 : <input type="text" v-model="comment_content"></p>      
@@ -132,6 +148,42 @@ export default {
         this.comment_content = ''
       }
     },
+
+    updateComment(comment) {
+      const commentItem = {
+        'content': comment.content,
+        'completed': !comment.completed,
+      }
+      axios({
+        method: 'put',
+        url: `http://127.0.0.1:8000/articles/comment/${comment.id}/`,
+        data: commentItem,
+        headers: this.setToken()
+      })
+        .then((res) => {
+          console.log(res)
+          comment.completed = !comment.completed
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+
+    },
+    deleteComment(comment) {
+      axios({
+        method: 'delete',
+        url: `http://127.0.0.1:8000/articles/comment/${comment.id}/`,
+        headers: this.setToken()
+      })
+        .then((res) => {
+          console.log(res)
+          this.getComments()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+
   },
   created () {
     axios({

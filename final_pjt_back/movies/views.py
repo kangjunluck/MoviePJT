@@ -53,6 +53,8 @@ def review_create(request, movie_pk):
 
 # 상세 리뷰 정보, 리뷰 수정, 리뷰 삭제
 @api_view(['GET', 'PUT', 'DELETE'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def review_detail(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
     # 리뷰 상세조회
@@ -75,21 +77,22 @@ def review_detail(request, review_pk):
 
 
 # 영화 좋아요
-# @require_POST
-
-# def like(request, review_pk):
-#     context = {}
-#     if request.user.is_authenticated:
-#         review = get_object_or_404(Review, pk=review_pk)
-#         user = request.user
+@api_view(['POST'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def like(request, movie_pk):
+    context = {}
+    if request.user.is_authenticated:
+        movie = get_object_or_404(Movie, pk=movie_pk)
+        user = request.user
         
-#         if review.like_users.filter(pk=user.pk).exists():
-#             review.like_users.remove(user)
-#             context['like'] = False
-#         else:
-#             review.like_users.add(user)
-#             context['like'] = True
+        if movie.like_users.filter(pk=user.pk).exists():
+            movie.like_users.remove(user)
+            context['like'] = False
+        else:
+            movie.like_users.add(user)
+            context['like'] = True
         
-#         context['counts'] = review.like_users.count()
+        context['counts'] = movie.like_users.count()
 
-#     return JsonResponse(context)
+    return Response(context)
