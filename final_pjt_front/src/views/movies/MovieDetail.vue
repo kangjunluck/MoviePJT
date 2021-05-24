@@ -22,10 +22,16 @@
       <hr>
       <h3>Review</h3>
       <ul>
-        <li v-for="review in reviews" :key="review.id">{{ review.title }}</li>
+        <li v-for="review in reviews" :key="review.id">{{ review.content }} 평점 : {{review.person_vote}}점</li>
       </ul>
+      <hr>
       <form>
-        <p>title : <input type="text" v-model="review_title"></p>
+        <div>
+          <star-rating v-model="rating" 
+                        v-bind:star-size="5"
+                        :show-rating="false">
+          </star-rating>
+        </div>
         <p>내용 : <input type="text" v-model="review_content"></p>
         <button @click.prevent="reviewCreate">+</button>
       </form>
@@ -34,10 +40,15 @@
   </div>
 </template>
 
-<script>
+<script type="text/javascript">   
+import {StarRating} from 'vue-rate-it';
 import axios from'axios'
 
+
 export default {
+  components: {
+    StarRating,
+  },
   name: "MovieDetail",
   data () {
     return {
@@ -45,11 +56,12 @@ export default {
       userId: null,
       movie: null,
       reviews: null,
-      review_title : '',
       review_content : '',
+      rating: 3,
 
       likeCnt: null,
       likeUsers: [],
+
     }
   },
   methods: {
@@ -107,10 +119,10 @@ export default {
     },
     reviewCreate () {
       const reviewItem = {
-        title: this.review_title,
         content: this.review_content,
+        person_vote: this.rating * 2,
       }
-      if (reviewItem.title && reviewItem.content) {
+      if (reviewItem.content && reviewItem.person_vote) {
         axios({
           method: 'post',
           url: `http://127.0.0.1:8000/movies/${this.movie.id}/review/`,
