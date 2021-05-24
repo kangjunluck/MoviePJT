@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>Movie</h1>
-    <input type="text">
+    <input type="text" v-model="inputText" @change="findWord(inputText)">
     <div class='container'>
       <div class="btn btn-primary" @click.prevent="getMovies">전체영화조회</div>
       <div class="row">
@@ -65,6 +65,7 @@ export default {
   name: 'Movie',
   data () {
     return {
+      inputText: '',
       movies: null,
     }
   },
@@ -98,6 +99,9 @@ export default {
         params: {
           movie_id: movie.id,
         }})
+    },
+    findWord (inputText) {
+      console.log(inputText)
     },
 
     // 정렬 함수 ---------------------------------------

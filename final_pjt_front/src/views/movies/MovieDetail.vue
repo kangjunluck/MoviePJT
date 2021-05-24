@@ -106,7 +106,24 @@ export default {
           console.log(err)
         })
     },
-
+    updateMovie(movie) {
+      const movieItem = {
+        ...movie,
+        vote_average: this.movie_vote,
+      }
+      axios({
+        method: 'put',
+        url: `http://127.0.0.1:8000/movies/updatemovie/${this.id}/`,
+        data: movieItem,
+        headers: this.setToken()
+      })
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
     getReviews() {
       axios({
         method: 'get',
@@ -114,13 +131,13 @@ export default {
         headers: this.setToken()
       })
         .then((res) => {
-          console.log(res)
           this.reviews = res.data.review_set
           let total = 0
           this.reviews.forEach((review)=>{
             total = total + review.person_vote
           })
           this.movie_vote = ((total + parseFloat(this.base_vote)) / (this.reviews.length + 1)).toFixed(1)
+          this.updateMovie(this.movie)
         })
         .catch((err) => {
           console.log(err)

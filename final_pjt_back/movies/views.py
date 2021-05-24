@@ -42,6 +42,17 @@ def movie_detail(request, movie_pk):
     # serializer.data["avg"] = avg
     # print(serializer.data)
     return Response(serializer.data)
+# movie 데이터 _수정
+@api_view(['PUT'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def movie_update(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    if request.method == 'PUT':
+        serializer = MovieSerializer(movie, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
 
 
 # 전체 리뷰정보 반환
@@ -107,4 +118,15 @@ def like(request, movie_pk):
         
         context['counts'] = movie.like_users.count()
 
+    return Response(context)
+
+# 평점 상위 10개 영화 가져오기
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def rankmovie(request):
+    movies = list(Movie.objects.order_by('-vote_average')[:5].values())
+    context = {
+        'movies': movies
+    }
     return Response(context)

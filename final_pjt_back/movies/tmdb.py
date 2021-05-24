@@ -42,7 +42,7 @@ for num in movie_list:
         url = "https://api.themoviedb.org/3/movie/{}?api_key={}&language=ko-kr".format(num, apikey)
         r = requests.get(url)
         data = json.loads(r.text)
-        # pprint(data)
+        pprint(data)
         video_url = "https://api.themoviedb.org/3/movie/{}/videos?api_key={}".format(num, apikey)
         video_r = requests.get(video_url)
         video_data = json.loads(video_r.text)
