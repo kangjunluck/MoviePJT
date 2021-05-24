@@ -5,6 +5,8 @@
       <div class="row">
         <div class="col-12 col-md-4">
           <h3>여기는 나닮배</h3>
+          <div class="border-right-danger">
+          </div>
         </div>
         <div class="col-12 col-md-4">
           <h3>오늘의 랜덤 추천 영화</h3>

@@ -4,7 +4,8 @@
     <div v-if="movie">
       <h3>{{ movie.title }}</h3>
       <p>{{ movie.overview }}</p>
-      <p>이 영화의 평점은 {{ movie_vote }}점</p>
+      <p>이 영화의 평점은 {{ movie.vote_average }}점</p>
+      <p>유저들의 평점은 {{ movie.movie_vote * 2 }}점</p>
       <p>이 영화를 좋아하는 사람은 {{ likeCnt }}명 </p>
       <form id="like-form">
         <div v-if="!likeUsers.includes(userId)">
@@ -34,7 +35,7 @@
           <button @click.prevent="updateReview(review)">완료</button>
         </div>
         <div v-else>
-          {{ review.content }}  평점 : {{ review.person_vote }}점 <br>
+          {{ review.content }}  평점 : {{ review.person_vote*2 }}점 <br>
           <div v-if="review.user === userId">
             <button @click.prevent="updateReview(review)">수정</button>
           </div>
@@ -101,7 +102,6 @@ export default {
         headers: this.setToken()
       })
         .then((res) => {
-          console.log(res)
           this.userId = res.data.userid
         })
         .catch((err) => {
@@ -115,7 +115,6 @@ export default {
         headers: this.setToken()
       })
         .then((res) => {
-          console.log(res)
           this.movie = res.data
           this.likeCnt = res.data.like_users.length
           this.likeUsers = res.data.like_users
@@ -126,9 +125,10 @@ export default {
         })
     },
     updateMovie(movie) {
+      console.log(this.movie_vote)
       const movieItem = {
         ...movie,
-        vote_average: this.movie_vote,
+        movie_vote: this.movie_vote,
       }
       axios({
         method: 'put',
@@ -138,11 +138,15 @@ export default {
       })
         .then((res) => {
           console.log(res)
+          this.getMovie()
+          this.getReviews()
         })
         .catch((err) => {
+          console.log('여기?')
           console.log(err)
         })
     },
+
     getReviews() {
       axios({
         method: 'get',
@@ -151,12 +155,6 @@ export default {
       })
         .then((res) => {
           this.reviews = res.data.review_set
-          let total = 0
-          this.reviews.forEach((review)=>{
-            total = total + review.person_vote
-          })
-          this.movie_vote = ((total + parseFloat(this.base_vote)) / (this.reviews.length + 1)).toFixed(1)
-          this.updateMovie(this.movie)
         })
         .catch((err) => {
           console.log(err)
@@ -165,7 +163,7 @@ export default {
     reviewCreate () {
       const reviewItem = {
         content: this.review_content,
-        person_vote: this.rating * 2,
+        person_vote: this.rating,
       }
       if (reviewItem.content && reviewItem.person_vote) {
         axios({
@@ -176,7 +174,25 @@ export default {
         })
           .then((res) => {
             console.log(res)
-            this.getReviews()
+            const myPromise = new Promise((resolve, reject) => {
+            axios({
+              method: 'get',
+              url: `http://127.0.0.1:8000/movies/detail/${this.id}/`,
+              headers: this.setToken()
+            })
+              .then((res) => {
+                console.log(res)
+                resolve()
+                this.reviews = res.data.review_set
+              })
+              .catch((err) => {
+                console.log(err)
+                reject()
+              })
+            })
+            myPromise.then(()=>{
+                this.calculateVote()
+              })
           })
           .catch((err) => {
             console.log(err)
@@ -186,7 +202,7 @@ export default {
     updateReview (review) {
       const reviewItem = {
         ...review,
-        'person_vote': (review.person_vote)*2,
+        'person_vote': review.person_vote,
         'content': review.content,
         'completed': !review.completed,
       }
@@ -198,8 +214,25 @@ export default {
       })
         .then((res) => {
           console.log(res)
-          review.person_vote = review.person_vote * 2
-          review.completed = !review.completed
+          const myPromise = new Promise((resolve, reject) => {
+            axios({
+              method: 'get',
+              url: `http://127.0.0.1:8000/movies/detail/${this.id}/`,
+              headers: this.setToken()
+            })
+              .then((res) => {
+                console.log(res)
+                resolve()
+                this.reviews = res.data.review_set
+              })
+              .catch((err) => {
+                console.log(err)
+                reject()
+              })
+            })
+            myPromise.then(()=>{
+              this.calculateVote()
+              })
         })
         .catch((err) => {
           console.log(err)
@@ -213,11 +246,42 @@ export default {
       })
         .then((res) => {
           console.log(res)
-          this.getReviews()
+          const myPromise = new Promise((resolve, reject) => {
+            axios({
+              method: 'get',
+              url: `http://127.0.0.1:8000/movies/detail/${this.id}/`,
+              headers: this.setToken()
+            })
+              .then((res) => {
+                console.log(res)
+                resolve()
+                this.reviews = res.data.review_set
+              })
+              .catch((err) => {
+                console.log(err)
+                reject()
+              })
+            })
+          myPromise.then(()=>{
+            this.calculateVote()
+          })
         })
         .catch((err) => {
           console.log(err)
         })
+    },
+    calculateVote () {
+      let total = 0
+      console.log(this.reviews)
+      if (this.reviews.length !== 0) {
+        this.reviews.forEach((review)=>{
+          total = total + review.person_vote
+        })
+        this.movie_vote = ((total) / (this.reviews.length)).toFixed(1)
+      } else {
+        this.movie_vote = 0
+      }
+      this.updateMovie(this.movie)
     },
 
 
@@ -238,9 +302,9 @@ export default {
     },
   },
   created () {
+    this.getUserId()
     this.getMovie()
     this.getReviews()
-    this.getUserId()
   },
 }
 </script>
