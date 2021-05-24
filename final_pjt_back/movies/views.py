@@ -29,17 +29,18 @@ def index(request):
 def movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     serializer = MovieSerializer(movie)
-    reviews = get_list_or_404(Review, pk=movie_pk, many=True)
-    total = 0
-    num = len(reviews) 
-    for rev in reviews:
-        total += rev.person_vote
-    if total != 0:
-        avg = round(total / num, 1)
-    else:
-        avg = 0
-    serializer.data["avg"] = avg
-    print(serializer)
+    # reviews = get_list_or_404(Review, movie_id=movie_pk)
+    # total = 0
+    # num = len(reviews) 
+    # for rev in reviews:
+    #     total += rev.person_vote
+    # if total != 0:
+    #     avg = round(total / num, 1)
+    # else:
+    #     avg = 0
+    # print(avg)
+    # serializer.data["avg"] = avg
+    # print(serializer.data)
     return Response(serializer.data)
 
 

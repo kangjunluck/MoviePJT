@@ -4,6 +4,7 @@
     <div v-if="movie">
       <h3>{{ movie.title }}</h3>
       <p>{{ movie.overview }}</p>
+      <p>이 영화의 평점은 {{ movie_vote }}점</p>
       <p>이 영화를 좋아하는 사람은 {{ likeCnt }}명 </p>
       <form id="like-form">
         <div v-if="!likeUsers.includes(userId)">
@@ -55,9 +56,11 @@ export default {
       id: this.$route.params.movie_id,
       userId: null,
       movie: null,
+      base_vote: null,
       reviews: null,
       review_content : '',
       rating: 3,
+      movie_vote: null,
 
       likeCnt: null,
       likeUsers: [],
@@ -97,6 +100,7 @@ export default {
           this.movie = res.data
           this.likeCnt = res.data.like_users.length
           this.likeUsers = res.data.like_users
+          this.base_vote = res.data.vote_average
         })
         .catch((err) => {
           console.log(err)
@@ -112,6 +116,11 @@ export default {
         .then((res) => {
           console.log(res)
           this.reviews = res.data.review_set
+          let total = 0
+          this.reviews.forEach((review)=>{
+            total = total + review.person_vote
+          })
+          this.movie_vote = ((total + parseFloat(this.base_vote)) / (this.reviews.length + 1)).toFixed(1)
         })
         .catch((err) => {
           console.log(err)

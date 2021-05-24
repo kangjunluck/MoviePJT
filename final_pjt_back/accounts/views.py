@@ -41,12 +41,14 @@ def userid(request):
     articles = list(user.articles.all().values())
     reviews = list(user.reviews.all().values())
     comments = list(user.comments.all().values())
+    likeMovies =list(user.like_movies.all().values())
     data = {
         'articles': articles,
         'username': user.username,
         'comments': comments,
         'reviews': reviews,
         'userid': user.id,
+        'likeMovies':likeMovies,
     }
     return Response(data)
         
