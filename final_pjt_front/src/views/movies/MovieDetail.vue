@@ -22,16 +22,36 @@
       </form>
       <hr>
       <h3>Review</h3>
-      <ul>
-        <li v-for="review in reviews" :key="review.id">{{ review.content }} 평점 : {{review.person_vote}}점</li>
-      </ul>
+      <li v-for="review in reviews" :key="review.id">
+        <div v-if="review.completed">
+          <div>
+            <star-rating v-model="review.person_vote" 
+                          v-bind:star-size="5"
+                          :show-rating="false">
+            </star-rating>
+          </div>
+          <input type="text" v-model="review.content">
+          <button @click.prevent="updateReview(review)">완료</button>
+        </div>
+        <div v-else>
+          {{ review.content }}  평점 : {{ review.person_vote }}점 <br>
+          <div v-if="review.user === userId">
+            <button @click.prevent="updateReview(review)">수정</button>
+          </div>
+        </div>
+        <div v-if="review.user === userId">
+          <button @click.prevent="deleteReview(review)">삭제</button>
+        </div>
+      </li>
       <hr>
       <form>
         <div>
           <star-rating v-model="rating" 
-                        v-bind:star-size="5"
-                        :show-rating="false">
+                       v-bind:star-size="5"
+                       :show-rating="false"
+                       >
           </star-rating>
+          <span>{{ rating * 2 }}</span>
         </div>
         <p>내용 : <input type="text" v-model="review_content"></p>
         <button @click.prevent="reviewCreate">+</button>
@@ -64,7 +84,6 @@ export default {
 
       likeCnt: null,
       likeUsers: [],
-
     }
   },
   methods: {
@@ -164,6 +183,44 @@ export default {
           })
       }
     },
+    updateReview (review) {
+      const reviewItem = {
+        ...review,
+        'person_vote': (review.person_vote)*2,
+        'content': review.content,
+        'completed': !review.completed,
+      }
+      axios({
+        method: 'put',
+        url: `http://127.0.0.1:8000/movies/reviewupdate/${review.id}/`,
+        data: reviewItem,
+        headers: this.setToken()
+      })
+        .then((res) => {
+          console.log(res)
+          review.person_vote = review.person_vote * 2
+          review.completed = !review.completed
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    deleteReview (review) {
+      axios({
+        method: 'delete',
+        url: `http://127.0.0.1:8000/movies/reviewupdate/${review.id}/`,
+        headers: this.setToken()
+      })
+        .then((res) => {
+          console.log(res)
+          this.getReviews()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+
+
     onLike (movie) {
       axios({
         method: 'post',

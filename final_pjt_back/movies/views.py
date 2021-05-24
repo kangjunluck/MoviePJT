@@ -74,19 +74,16 @@ def review_create(request, movie_pk):
         serializer.save(movie=movie, user=request.user)
         return Response(serializer.data)
 
-# 상세 리뷰 정보, 리뷰 수정, 리뷰 삭제
-@api_view(['GET', 'PUT', 'DELETE'])
+# 리뷰 수정, 리뷰 삭제
+@api_view(['PUT', 'DELETE'])
 @authentication_classes([JSONWebTokenAuthentication])
 @permission_classes([IsAuthenticated])
-def review_detail(request, review_pk):
+def review_update(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
-    # 리뷰 상세조회
-    if request.method == 'GET':
-        serializer = ReviewSerializer(review)
-        return Response(serializer.data)
     # 리뷰 수정
-    elif request.method == 'PUT':
+    if request.method == 'PUT':
         serializer = ReviewSerializer(review, data=request.data)
+        print(serializer)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)

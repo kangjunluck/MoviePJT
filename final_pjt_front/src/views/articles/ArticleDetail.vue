@@ -151,6 +151,7 @@ export default {
 
     updateComment(comment) {
       const commentItem = {
+        ...comment,
         'content': comment.content,
         'completed': !comment.completed,
       }

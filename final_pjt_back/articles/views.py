@@ -48,7 +48,6 @@ def article_update_delete(request, article_pk):
 
     if request.method == 'PUT':
         serializer = ArticleCutSerializer(article, data=request.data)
-        print(serializer)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)

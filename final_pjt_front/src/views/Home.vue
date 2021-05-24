@@ -3,10 +3,10 @@
     Home
     <div class="container">
       <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-md-4">
           <h3>여기는 나닮배</h3>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-md-4">
           <h3>오늘의 랜덤 추천 영화</h3>
           <div v-if="ranMovie">
             {{ ranMovie.title }}
@@ -17,7 +17,7 @@
             <p>{{ rankmovie.vote_average }}</p>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-md-4 ">
           <h3>내가 찜한 영화</h3>
           <div v-for="likemovie in likeMovies" :key="likemovie.id">
             <h4>{{ likemovie.title }}</h4>

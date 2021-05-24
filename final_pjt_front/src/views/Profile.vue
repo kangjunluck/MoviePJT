@@ -10,7 +10,7 @@
     <hr>
     <h3>내가 쓴 review</h3>
     <p v-for="review in reviews" :key="review.pk">
-      <router-link :to="{ name: 'MovieDetail', params: { movie_id: review.movie_id } }">{{ review.title }}</router-link>
+      <router-link :to="{ name: 'MovieDetail', params: { movie_id: review.movie_id } }">{{ review.content }}</router-link>
     </p>
     <hr>
     <h3>내가 쓴 comment</h3>

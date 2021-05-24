@@ -28,6 +28,7 @@ class Movie(models.Model):
 class Review(models.Model):
     person_vote = models.IntegerField()
     content = models.TextField()    
+    completed = models.BooleanField(default=False)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reviews')
 

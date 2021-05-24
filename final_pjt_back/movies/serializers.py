@@ -8,12 +8,12 @@ class ReviewListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = ('content', 'person_vote',)
+        fields = '__all__'
 
 # 리뷰 상세 조회
 class ReviewSerializer(serializers.ModelSerializer):
     
-    movie_title = serializers.CharField(source='movie.title', read_only=True)
+    # movie_title = serializers.CharField(source='movie.title', read_only=True)
 
     class Meta:
         model = Review
