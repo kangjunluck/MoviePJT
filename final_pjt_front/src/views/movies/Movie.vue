@@ -1,7 +1,12 @@
 <template>
   <div class="home">
     <h1>Movie</h1>
-    <input type="text" v-model="inputText" @change="findWord(inputText)">
+    <multiselect
+      v-model="searchInput"
+      :options="moviesTitleList"
+      placeholder="영화제목을 입력해주세요"
+      @searchChange="findMovie(searchInput)">
+    </multiselect>
     <div class='container'>
       <div class="btn btn-primary" @click.prevent="getMovies">전체영화조회</div>
       <div class="row">
@@ -60,13 +65,16 @@
 <script>
 // @ is an alias to /src
 import axios from'axios'
+import Multiselect from 'vue-multiselect'
 
 export default {
   name: 'Movie',
+  components: { Multiselect },
   data () {
     return {
-      inputText: '',
-      movies: null,
+      movies: [],
+      moviesTitleList: [],
+      searchInput: null,
     }
   },
   methods: {
@@ -87,6 +95,11 @@ export default {
         .then((res) => {
           console.log(res)
           this.movies = res.data
+          var list = []
+          this.movies.forEach(movie => {
+            list.push(movie.title)
+          });
+          this.moviesTitleList = list
         })
         .catch((err) => {
           console.log(err)
@@ -100,8 +113,8 @@ export default {
           movie_id: movie.id,
         }})
     },
-    findWord (inputText) {
-      console.log(inputText)
+    findMovie (searchInput) {
+      console.log(searchInput)
     },
 
     // 정렬 함수 ---------------------------------------
@@ -149,3 +162,4 @@ export default {
   }
 }
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
