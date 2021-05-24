@@ -5,7 +5,7 @@
       v-model="searchInput"
       :options="moviesTitleList"
       placeholder="영화제목을 입력해주세요"
-      @searchChange="findMovie(searchInput)">
+      @input="findMovie(searchInput)">
     </multiselect>
     <div class='container'>
       <div class="btn btn-primary" @click.prevent="getMovies">전체영화조회</div>
@@ -114,7 +114,27 @@ export default {
         }})
     },
     findMovie (searchInput) {
-      console.log(searchInput)
+      const myPromise = new Promise((resolve, reject) => {
+        axios({
+          method: 'get',
+          url: 'http://127.0.0.1:8000/movies/',
+          headers: this.setToken()
+        })
+          .then((res) => {
+            console.log(res)
+            resolve()
+            this.movies = res.data
+          })
+          .catch((err) => {
+            console.log(err)
+            reject()
+          })
+      })
+      myPromise.then(()=>{
+        this.movies = this.movies.filter((movie)=>{
+          return movie.title === searchInput
+        })
+      })
     },
 
     // 정렬 함수 ---------------------------------------
