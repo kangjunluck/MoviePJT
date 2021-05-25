@@ -13,7 +13,7 @@
             <figure @mouseover="movieHover = true"
                     @mouseleave="movieHover = false"  class="myfigure">
               <img @click="moveMovieDetail(ranMovie)" :src="'https://image.tmdb.org/t/p/w500/' + ranMovie.poster_path"  class="img-responsive img-rounded figure-img movie-img" valign="absmiddle" />                            
-              <span style="font-size: 30px; text-align: center; background: black; color: white;">{{ ranMovie.title }}</span>
+              <span style="font-size: 30px; text-align: center;  color: white;">{{ ranMovie.title }}</span>
               <div @click="moveMovieDetail(ranMovie)" class="figure-overlay movie-img">                        
                 <div v-if="movieHover">   
                   <div class="figure-overlay-description">
@@ -27,6 +27,7 @@
               </div>
             </figure>
           </div>
+          <hr>
           <h2>최고 평점 영화 Top5</h2>        
           <div class="list-group">
             <div v-for="(rankmovie, index) in rankMovies" :key="rankmovie.id" :class="{'movie-img': true}">

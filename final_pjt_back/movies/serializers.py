@@ -5,7 +5,7 @@ from .models import Movie, Review
 
 # 리뷰 전체 조회
 class ReviewListSerializer(serializers.ModelSerializer):
-
+    
     class Meta:
         model = Review
         fields = '__all__'
