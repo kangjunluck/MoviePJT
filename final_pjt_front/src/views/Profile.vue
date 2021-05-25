@@ -1,22 +1,32 @@
 <template>
-  <div class="home">
-    <h1>{{username}}의 Profile</h1>
+  <div class="profile" style="font-family: 'Jua', sans-serif;">
+    <h1>{{ username }}의 Profile</h1>
     <hr>
-    <h3>내가 쓴 article</h3>
-    
-    <p v-for="article in articles" :key="article.pk">
-      <router-link :to="{ name: 'ArticleDetail', params: { article_id: article.id } }">{{ article.title }}</router-link>
-    </p>
-    <hr>
-    <h3>내가 쓴 review</h3>
-    <p v-for="review in reviews" :key="review.pk">
-      <router-link :to="{ name: 'MovieDetail', params: { movie_id: review.movie_id } }">{{ review.content }}</router-link>
-    </p>
-    <hr>
-    <h3>내가 쓴 comment</h3>
-    <p v-for="comment in comments" :key="comment.pk">
-      <router-link :to="{ name: 'ArticleDetail', params: { article_id: comment.article_id } }">{{ comment.content }}</router-link>
-    </p>
+    <div class='container'>
+      <div class="row">
+        <div class="col-4">
+          <h3>작성한 Articles</h3>
+          <div v-for="(article, index) in articles" :key="article.pk" class="fs-3">
+            <p class="my-0 bg-dark text-white" style="text-align:left;">{{ index+1 }}. <router-link class="changelink text-white" :to="{ name: 'ArticleDetail', params: { article_id: article.id } }">{{ article.title }}</router-link></p>
+            <p class="my-0 form-control" style="text-overflow: ellipsis; text-align:justify;">{{ article.content }}</p>
+            <p class="my-0 bg-dark text-white fs-5" style="text-align:left;">{{ typeof(article.created_at) }}</p>
+            <p class="my-0 bg-dark text-white fs-5" style="text-align:left;">{{ article.updated_at }}</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <h3>작성한 Reviews</h3>
+          <p v-for="review in reviews" :key="review.pk">
+            <router-link :to="{ name: 'MovieDetail', params: { movie_id: review.movie_id } }">{{ review.content }}</router-link>
+          </p>
+        </div>
+        <div class="col-4">
+          <h3>작성한 Comments</h3>
+          <p v-for="comment in comments" :key="comment.pk">
+            <router-link :to="{ name: 'ArticleDetail', params: { article_id: comment.article_id } }">{{ comment.content }}</router-link>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -69,3 +79,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.changelink {
+  text-decoration: none;
+}
+</style>
