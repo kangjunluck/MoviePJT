@@ -1,25 +1,19 @@
 <template>
-          <!-- <div class="w-100 btn-group btn-group-sm btn-group-vertical" role="group">
-            <button class="btn b-panel" style="background-color: rgba(255, 255, 255, 0.1);" type="button" data-toggle="collapse" data-target="#collapseExample" aria-controls="collapseExample">
-              장르 필터 
-            </button>
-            <div class="collapse mt-2 " id="collapseExample">     
-              <div class="btn btn-primary" @click.prevent="genreFilter(28)">액션</div>
-              <div class="btn btn-primary" @click.prevent="genreFilter(12)">모험</div>
-              <label class="btn col text-left" style="background-color: rgba(255, 255, 255, 0.1);">
-                <input type="checkbox" name="list_genre" value="액션"><label>액션</label>
-              </label> 
-            </div>        
-          </div> -->
   <div class="home" style="font-family: 'Jua', sans-serif;">
     <h1>Movie</h1>
-    <multiselect      
-      v-model="searchInput"
-      :options="moviesTitleList"
-      placeholder="영화제목을 입력해주세요"
-      @input="findMovie(searchInput)">
-    </multiselect>
-    <!-- <div class='container'> -->
+    <div class='container'>
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+          <multiselect      
+            v-model="searchInput"
+            :options="moviesTitleList"
+            placeholder="영화제목을 입력해주세요"
+            @input="findMovie(searchInput)">
+          </multiselect>
+        </div>
+      </div>
       <div class="btn btn-primary" @click.prevent="getMovies">전체영화조회</div>
       <div class="row">
         <div class="col-1">
@@ -56,22 +50,19 @@
                         개봉일:{{movie.release_date}} <br>
                         상영시간: {{movie.runtime}}분 <br>
                         평점: {{movie.vote_average}} <br>
-                        user평점: {{movie.movie_vote}} <br>                      
-                        <!-- {{ movie.overview }} -->
+                        user평점: {{movie.movie_vote}} <br>                                              
                       </div>       
                     </div>
-                  </div>
-                  <!-- <button class="btn btn-primary" @click="moveMovieDetail(movie)">Detail</button> -->
+                  </div>                  
                 </figure>
               </content>
-              <aside class="col-md-10 col-lg-10 col-sm-10"> 
-                ?????????? 
+              <aside class="col-md-10 col-lg-10 col-sm-10">                 
               </aside>
             </div>
           </div>
         </div>
       </div>
-    <!-- </div> -->
+    </div>
   </div>
 </template>
 

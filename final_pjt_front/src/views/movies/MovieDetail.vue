@@ -81,45 +81,69 @@
       </div>
       <!--  --> 
 
-      <hr>
-      <h3>Review</h3>
-      <li v-for="review in reviews" :key="review.id">
-        <div v-if="review.completed">
-          <div>
-            <star-rating v-model="review.person_vote" 
-                          v-bind:star-size="5"
-                          :show-rating="false"                          
-                          >
-            </star-rating>
+      <div class="container">
+        <hr>  
+        <h3>유저 리뷰</h3>
+        <ul>
+          <div v-for="review in reviews" :key="review.id">
+            <div v-if="review.completed">
+              <div>
+                <star-rating v-model="review.person_vote" 
+                              v-bind:star-size="5"
+                              :show-rating="false"
+                              :inline=true
+                              active-color="#E50914"                           
+                              >
+                </star-rating>
+              </div>
+              <input type="text" v-model="review.content">              
+              <button @click.prevent="updateReview(review)" class="btn btn-danger">수정완료</button>
+              
+            </div>
+            <div v-else>
+              <h2>{{ review.content }}                               
+              </h2>
+                  <star-rating :read-only="true"                                  
+                               :increment="0.1"              
+                               :rating="review.person_vote"
+                               :show-rating="false"   
+                               :inline=true    
+                               :glow="5"
+                               v-bind:star-size="1"
+                               active-color="#E50914"></star-rating>
+                  {{ review.person_vote*2 }}점
+                <div class="inline" v-if="review.user === userId">
+                  <button @click.prevent="updateReview(review)" class="btn btn-secondary">수정</button>
+                  <button @click.prevent="deleteReview(review), reviewExist=false" class="btn btn-secondary">삭제</button>
+                </div>                             
+            </div>
+            <hr>                        
           </div>
-          <input type="text" v-model="review.content">
-          <button @click.prevent="updateReview(review)">완료</button>
-        </div>
-        <div v-else>
-          {{ review.content }}  평점 : {{ review.person_vote*2 }}점 <br>
-          <div v-if="review.user === userId">
-            <button @click.prevent="updateReview(review)">수정</button>
-          </div>
-        </div>
-        <div v-if="review.user === userId">
-          <button @click.prevent="deleteReview(review)">삭제</button>
-        </div>
-      </li>
-      <hr>
-
+        </ul>
+        <hr>
+        <h3>리뷰 작성</h3>        
         <form v-if="!reviewExist">        
+          <h3>
+            <input type="text" v-model="review_content" placeholder="리뷰내용을 입력해주세요">
+            <button @click.prevent="reviewCreate" class="btn btn-danger">제출</button>
+          </h3>
           <div>
             <star-rating v-model="rating" 
                         v-bind:star-size="5"
                         :show-rating="false"
-                        
+                        :increment="1"
+                        active-color="#E50914"
+                        :inline=true
                         >
             </star-rating>
-            <span>{{ rating * 2 }}</span>
+            <span>{{ rating * 2 }} 점</span>
           </div>
-          <p>내용 : <input type="text" v-model="review_content"></p>
-          <button @click.prevent="reviewCreate">+</button>
-        </form>        
+        </form>
+        <div v-else>
+          <h2 style="color:red">이미 리뷰를 작성했습니다!</h2> 
+        </div>
+             
+      </div>
       
     </div>
 
@@ -140,6 +164,7 @@ export default {
     return {
       id: this.$route.params.movie_id,
       userId: null,
+      userName: '',
       movie: null,
       movieReleasdate: null,
       base_vote: null,
@@ -171,6 +196,7 @@ export default {
       })
         .then((res) => {
           this.userId = res.data.userid
+          this.userName = res.data.username
         })
         .catch((err) => {
           console.log(err)
@@ -321,7 +347,7 @@ export default {
         headers: this.setToken()
       })
         .then((res) => {
-          console.log(res)
+          console.log(res)          
           const myPromise = new Promise((resolve, reject) => {
             axios({
               method: 'get',
@@ -330,7 +356,7 @@ export default {
             })
               .then((res) => {
                 console.log(res)
-                resolve()
+                resolve()                
                 this.reviews = res.data.review_set
               })
               .catch((err) => {

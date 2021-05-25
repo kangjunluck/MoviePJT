@@ -5,7 +5,7 @@
     <div class='container'>
       <div class="row">
         <div class="col-4">
-          <h3>작성한 Articles</h3>
+          <h3>작성한 Community 게시글</h3>
           <div v-for="(article, index) in articles" :key="article.pk" class="fs-3">
             <p class="my-0 bg-dark text-white" style="text-align:left;">
               {{ index+1 }}. {{ article.title }}

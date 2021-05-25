@@ -1,27 +1,43 @@
 <template>
-  <div>
-    <h1>Article</h1>
-    <router-link :to="{ name: 'CreateArticle' }">CreateArticle</router-link>
-    <ul>
-      <li v-for="(article, idx) in articles" :key="idx">
-        <p>제목 : <span class="article-item" @click="moveDetail(article)" >{{ article.title }}</span></p>
-        <p>내용 : <span  :class="{ completed: article.completed }">{{ article.content }}</span></p>
-        <p>글쓴이 : <span>{{ article.username }} {{ article.userid }} {{ userId }}</span></p>
-        <hr>
-      </li>
-    </ul>
+  <div style="font-family: 'Jua', sans-serif;">
+    <h1>Community</h1>
+    <hr>
+    <div class="container">
+      <p style="text-align:right;">
+        <router-link :class="{ 'article-item': true }" style="text-decoration: none; color:gainsboro; text-align:right;" :to="{ name: 'CreateArticle' }">CreateArticle</router-link>
+      </p>
+      <div class="row">
+        <div class="col-12">
+          <div v-for="(article, index) in articles" :key="article.pk" class="fs-3">
+            <p class="my-0 bg-dark text-white" style="text-align:left;">
+              {{ index+1 }}. {{ article.title }}
+              <router-link class="changelink fs-4"
+                           style="color: darkred; text-decoration: none;"                            
+                           :to="{ name: 'ArticleDetail', params: { article_id: article.id } }">Detail</router-link></p>
+            <p class="my-0 form-control bg-dark" style="text-overflow: ellipsis; text-align:justify; height: 10rem;  color:gainsboro;">{{ article.content }}</p>
+            <p class="my-0 bg-dark fs-5" style="text-align:right; color:gainsboro;">작성 :{{ $moment(article.created_at).format('YYYY-MM-DD') }}</p>
+            <p class="my-0 bg-dark fs-5" style="text-align:right; color:gainsboro;">수정 :{{ $moment(article.updated_at).format('YYYY-MM-DD') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 
+
 export default {
   name: 'Article',
+
   data: function () {
     return {
       articles: null,
       userId: null,
+
+      pageCnt: 0,
+      pageNum: 0, 
     }
   },
   methods: {
@@ -60,32 +76,6 @@ export default {
           console.log(err)
         })
     },
-    updateArticleStatus: function (article) {
-      const articleItem = {
-        ...article,
-        completed: !article.completed
-      }
-
-      axios({
-        method: 'put',
-        url: `http://127.0.0.1:8000/articles/${article.id}/`,
-        data: articleItem,
-        headers: this.setToken(),
-      })
-        .then((res) => {
-          console.log(res)
-          article.completed = !article.completed
-        })
-      },
-
-    moveDetail (article) {
-      this.$router.push({
-        name: 'ArticleDetail',
-        params: {
-          article_id: article.id,
-        }
-      })
-    },
   },
 
   created: function () {
@@ -105,6 +95,7 @@ export default {
 }
 .article-item {
   cursor: pointer;
+  font-size: 1.5rem;
 }
 .article-item:hover {
   border: 2px solid dodgerblue;
