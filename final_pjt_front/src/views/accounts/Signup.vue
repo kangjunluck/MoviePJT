@@ -1,19 +1,32 @@
 <template>
   <div>
     <h1>Signup</h1>
-    <div>
-      <label for="username">사용자 이름: </label>
-      <input type="text" id="username" v-model="credentials.username">
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+          <div class="d-flex flex-column align-items-start">
+            <label for="username">사용자 이름</label>
+            <input type="text" id="username"  class="form-control" v-model="credentials.username">
+            <small id="nameHelp">We'll never share your ID with anyone else.</small>
+          </div>
+          <div class="d-flex flex-column align-items-start">
+            <label for="password">Password</label>
+            <input type="password" id="password"  class="form-control" v-model="credentials.password">
+          </div>
+          <div class="d-flex flex-column align-items-start">
+            <label for="passwordConfirmation">PasswordConfirmation</label>
+            <input type="password" id="passwordConfirmation"  class="form-control" v-model="credentials.passwordConfirmation">
+          </div>
+          <button @click="signup(credentials)" class="btn btn-primary my-2">Signup</button>
+        </div>
+        <div class="col-2">
+        </div>
+      </div>
     </div>
-    <div>
-      <label for="password">비밀번호: </label>
-      <input type="password" id="password" v-model="credentials.password">
-    </div>
-    <div>
-      <label for="passwordConfirmation">비밀번호 확인: </label>
-      <input type="password" id="passwordConfirmation" v-model="credentials.passwordConfirmation">
-    </div>
-    <button @click="signup(credentials)">회원가입</button>
+
+
   </div>
 </template>
 

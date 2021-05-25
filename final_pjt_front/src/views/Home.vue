@@ -8,28 +8,42 @@
           <div class="border-right-danger">
           </div>
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4 ">
           <h2>오늘의 랜덤 추천 영화</h2>
           <div v-if="ranMovie">
-            <div class="card my-3" style="width:18rem ">
+            <div class="card my-3" style="">
               <img 
                 :src="'https://image.tmdb.org/t/p/w500/' + ranMovie.poster_path" 
-                class="card-img-top" alt="...">
+                class="card-img-top" alt="No image">
               <div class="card-body">
                 <h3 class="card-title">{{ ranMovie.title }}</h3>
                 <button class="btn btn-primary" @click="moveMovieDetail(ranMovie)">Detail</button>
               </div>
             </div>
           </div>
-          <h2>최고 평점 영화 Top5</h2>
-          <ul class="list">   
-            <li class="item fs-3 d-flex justify-content-start" v-for="rankmovie in rankMovies" :key="rankmovie.id">
-              <span class="movie-item" @click="moveMovieDetail(rankmovie)">{{ rankmovie.title }}  {{ rankmovie.vote_average }}점</span>
-            </li>  
-          </ul>
+          <h2>최고 평점 영화 Top5</h2>        
+          <div class="list-group">
+            <div v-for="rankmovie in rankMovies" :key="rankmovie.id">
+              <button type="button" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="offcanvas" :data-bs-target="'#offcanvasBottom' + rankmovie.id" aria-controls="offcanvasBottom">
+                <span>{{ rankmovie.title }}  {{ rankmovie.vote_average }}점</span>
+              </button>
+              <div class="offcanvas offcanvas-bottom" style="min-height: 25rem;" tabindex="-1" :id="'offcanvasBottom' + rankmovie.id" aria-labelledby="offcanvasBottomLabel">
+                <div class="offcanvas-header">
+                  <h3 class="offcanvas-title" id="offcanvasBottomLabel">{{ rankmovie.title }}</h3>
+                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <h4>평점 : {{ rankmovie.vote_average }}점  상영시간 : {{ rankmovie.runtime }}분</h4>
+                <div class="offcanvas-body small fs-4">
+                  {{rankmovie.overview}}
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
         <div class="col-12 col-md-4 ">
           <h2>내가 찜한 영화</h2>
+          <vue-carousel :data="data"></vue-carousel>
           <div v-for="likemovie in likeMovies" :key="likemovie.id">
             <h4>{{ likemovie.title }}</h4>
           </div>
@@ -45,10 +59,17 @@ import _ from 'lodash'
 
 export default {
   name: 'Home',
+  components: {
+  },
   data () {
     return {
+      data: [
+        '<div class="example-slide">Slide 1</div>',
+        '<div class="example-slide">Slide 2</div>',
+        '<div class="example-slide">Slide 3</div>',
+      ],
       userId: null,
-      likeMovies: [],
+      likeMovies: null,
 
       movies: [],
       ranMovie: null,
@@ -71,7 +92,6 @@ export default {
         headers: this.setToken()
       })
         .then((res) => {
-          console.log(res)
           this.userId = res.data.userid
           this.likeMovies = res.data.likeMovies
         })
@@ -129,23 +149,4 @@ export default {
 </script>
 
 <style scoped>
-.list {
-  counter-reset : numbering;
-  list-style-type:none;
-}
-.list .item:before{
-  counter-increment : numbering; 
-  content : counter(numbering);
-  margin-right:10px;
-}
-
-.movie-btn {
-  margin-left: 10px;
-}
-.movie-item {
-  cursor: pointer;
-}
-.movie-item:hover {
-  border: 2px solid dodgerblue;
-}
 </style>

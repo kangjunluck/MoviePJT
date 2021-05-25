@@ -1,15 +1,26 @@
 <template>
   <div>
     <h1>Login</h1>
-    <div>
-      <label for="username">사용자 이름: </label>
-      <input type="text" id="username" v-model="credentials.username">
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+          <div class="d-flex flex-column align-items-start">
+            <label for="username">사용자 이름</label>
+            <input type="text" id="username"  class="form-control" v-model="credentials.username">
+            <small id="nameHelp">We'll never share your ID with anyone else.</small>
+          </div>
+          <div class="d-flex flex-column align-items-start">
+            <label for="password">Password</label>
+            <input type="password" id="password"  class="form-control" v-model="credentials.password">
+          </div>
+          <button @click="login" class="btn btn-primary my-2">Submit</button>
+        </div>
+        <div class="col-2">
+        </div>
+      </div>
     </div>
-    <div>
-      <label for="password">비밀번호: </label>
-      <input type="password" id="password" v-model="credentials.password">
-    </div>
-    <button @click="login">로그인</button>
   </div>
 </template>
 
