@@ -17,7 +17,6 @@
     <p v-for="comment in comments" :key="comment.pk">
       <router-link :to="{ name: 'ArticleDetail', params: { article_id: comment.article_id } }">{{ comment.content }}</router-link>
     </p>
-
   </div>
 </template>
 

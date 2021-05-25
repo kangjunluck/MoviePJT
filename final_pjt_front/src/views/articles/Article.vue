@@ -100,9 +100,9 @@ export default {
 </script>
 
 <style scoped>
-  .article-btn {
-    margin-left: 10px;
-  }
+.article-btn {
+  margin-left: 10px;
+}
 .article-item {
   cursor: pointer;
 }
