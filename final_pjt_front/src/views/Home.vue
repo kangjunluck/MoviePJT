@@ -11,7 +11,26 @@
         <div class="col-12 col-md-4 ">
           <h2>오늘의 랜덤 추천 영화</h2>
           <div v-if="ranMovie">
-            <div class="card my-3" style="">
+            <figure @mouseover="movieHover = true"
+                    @mouseleave="movieHover = false"  class="myfigure">
+              <span style="font-size: 30px; text-align: center; background: black; color: white;">{{ ranMovie.title }}</span>
+              <img @click="moveMovieDetail(ranMovie)" :src="'https://image.tmdb.org/t/p/w500/' + ranMovie.poster_path"  class="img-responsive img-rounded figure-img movie-img" valign="absmiddle" />                            
+              <div @click="moveMovieDetail(ranMovie)" class="figure-overlay movie-img">                        
+                <div v-if="movieHover">   
+                  <div class="figure-overlay-description">
+                    <p style="font-size: 30px">{{ranMovie.title}}</p>
+                    개봉일:{{ranMovie.release_date}} <br>
+                    상영시간: {{ranMovie.runtime}}분 <br>
+                    평점: {{ranMovie.vote_average}} <br>
+                    user평점: {{ranMovie.movie_vote}} <br>                      
+                    <!-- {{ movie.overview }} -->
+                  </div>       
+                </div>
+              </div>
+              <!-- <button class="btn btn-primary" @click="moveMovieDetail(movie)">Detail</button> -->
+            </figure>
+
+            <!-- <div class="card my-3" style="">
               <img 
                 :src="'https://image.tmdb.org/t/p/w500/' + ranMovie.poster_path" 
                 class="card-img-top" alt="No image">
@@ -19,7 +38,7 @@
                 <h3 class="card-title">{{ ranMovie.title }}</h3>
                 <button class="btn btn-primary" @click="moveMovieDetail(ranMovie)">Detail</button>
               </div>
-            </div>
+            </div> -->
           </div>
           <h2>최고 평점 영화 Top5</h2>        
           <div class="list-group">
@@ -63,6 +82,7 @@ export default {
   },
   data () {
     return {
+      movieHover: false,
       userId: null,
       likeMovies: null,
 
@@ -144,4 +164,65 @@ export default {
 </script>
 
 <style scoped>
+.container content, .container aside {
+  position: relative;
+}
+
+.myfigure {
+  width: 100%;
+  position: relative;
+}
+
+.figure-img {
+  display: block;
+  width: 100%;
+  height: auto;
+} 
+
+.figure-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  width: 100%;  
+  color: #fff;
+  margin: 0;
+  display: block;  
+  height: 100%;
+  /* background: rgba(0, 0, 0, 0.6);
+    -webkit-transition: .6s ease;
+    transition: .6s ease;
+  text-align: center; */
+
+}
+
+.figure-overlay-description {
+  font-size: 15px;
+  position: absolute;
+  display: block;
+  overflow: auto;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.figure-overlay:hover {
+  display: block;
+  
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+    -webkit-transition: .6s ease;
+    transition: .6s ease;
+  text-align: center;
+}
+
+.movie-img {
+  cursor: pointer;
+}
+.movie-img:hover {
+  border: 5px solid crimson;
+}
 </style>

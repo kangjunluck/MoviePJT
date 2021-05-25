@@ -2,6 +2,23 @@
   <div>
     <h2>Movie Detail</h2>
     <div v-if="movie">
+      <!--  -->
+      <!-- <div class="row p-2">
+        <div class="col-3">
+          <div>
+            <img src="{{ movie.poster_path }}" alt="{{ movie.title }}_poster" width='100%'>
+          </div>
+        </div>
+        <div class="col-9">
+          <h3>
+          {{ movie.title }}
+          </h3>
+          <h5>
+          {{ movie.overview }}
+          </h5>
+        </div>
+      </div> -->
+      <!--  -->
       <h3>{{ movie.title }}</h3>
       <p>{{ movie.overview }}</p>
 
