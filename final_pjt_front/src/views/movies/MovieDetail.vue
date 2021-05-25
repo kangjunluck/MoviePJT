@@ -4,6 +4,17 @@
     <div v-if="movie">
       <h3>{{ movie.title }}</h3>
       <p>{{ movie.overview }}</p>
+
+      <div class="embed-responsive embed-responsive-16by9" >
+        <iframe   
+          class="embed-responsive-item"
+          :src= "videoUrl"
+          frameborder="0" 
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen
+          style="allign: middle; display:block; width:50vw; height: 50vh"
+        ></iframe>
+      </div>
       <p>이 영화의 평점은 {{ movie.vote_average }}점</p>
       <p>유저들의 평점은 {{ movie.movie_vote * 2 }}점</p>
       <p>이 영화를 좋아하는 사람은 {{ likeCnt }}명 </p>
@@ -28,7 +39,9 @@
           <div>
             <star-rating v-model="review.person_vote" 
                           v-bind:star-size="5"
-                          :show-rating="false">
+                          :show-rating="false"
+                          
+                          >
             </star-rating>
           </div>
           <input type="text" v-model="review.content">
@@ -50,6 +63,7 @@
           <star-rating v-model="rating" 
                        v-bind:star-size="5"
                        :show-rating="false"
+                       
                        >
           </star-rating>
           <span>{{ rating * 2 }}</span>
@@ -85,6 +99,8 @@ export default {
 
       likeCnt: null,
       likeUsers: [],
+      baseUrl: 'https://www.youtube.com/embed/',
+      videoUrl: ''
     }
   },
   methods: {
@@ -116,6 +132,7 @@ export default {
       })
         .then((res) => {
           this.movie = res.data
+          this.videoUrl = this.baseUrl + res.data.video
           this.likeCnt = res.data.like_users.length
           this.likeUsers = res.data.like_users
           this.base_vote = res.data.vote_average
