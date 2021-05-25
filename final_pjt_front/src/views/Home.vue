@@ -1,6 +1,5 @@
 <template>
   <div class="home" style="font-family: 'Jua', sans-serif;">
-    Home
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-4">
@@ -13,8 +12,8 @@
           <div v-if="ranMovie">
             <figure @mouseover="movieHover = true"
                     @mouseleave="movieHover = false"  class="myfigure">
-              <span style="font-size: 30px; text-align: center; background: black; color: white;">{{ ranMovie.title }}</span>
               <img @click="moveMovieDetail(ranMovie)" :src="'https://image.tmdb.org/t/p/w500/' + ranMovie.poster_path"  class="img-responsive img-rounded figure-img movie-img" valign="absmiddle" />                            
+              <span style="font-size: 30px; text-align: center; background: black; color: white;">{{ ranMovie.title }}</span>
               <div @click="moveMovieDetail(ranMovie)" class="figure-overlay movie-img">                        
                 <div v-if="movieHover">   
                   <div class="figure-overlay-description">
@@ -23,30 +22,22 @@
                     상영시간: {{ranMovie.runtime}}분 <br>
                     평점: {{ranMovie.vote_average}} <br>
                     user평점: {{ranMovie.movie_vote}} <br>                      
-                    <!-- {{ movie.overview }} -->
                   </div>       
                 </div>
               </div>
-              <!-- <button class="btn btn-primary" @click="moveMovieDetail(movie)">Detail</button> -->
             </figure>
-
-            <!-- <div class="card my-3" style="">
-              <img 
-                :src="'https://image.tmdb.org/t/p/w500/' + ranMovie.poster_path" 
-                class="card-img-top" alt="No image">
-              <div class="card-body">
-                <h3 class="card-title">{{ ranMovie.title }}</h3>
-                <button class="btn btn-primary" @click="moveMovieDetail(ranMovie)">Detail</button>
-              </div>
-            </div> -->
           </div>
           <h2>최고 평점 영화 Top5</h2>        
           <div class="list-group">
-            <div v-for="rankmovie in rankMovies" :key="rankmovie.id">
-              <button type="button" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="offcanvas" :data-bs-target="'#offcanvasBottom' + rankmovie.id" aria-controls="offcanvasBottom">
-                <span>{{ rankmovie.title }}  {{ rankmovie.vote_average }}점</span>
+            <div v-for="(rankmovie, index) in rankMovies" :key="rankmovie.id" :class="{'movie-img': true}">
+              <button type="button" 
+                      class="list-group-item list-group-item-action bg-dark border-0 d-flex justify-content-start" 
+                      aria-current="true" data-bs-toggle="offcanvas" 
+                      :data-bs-target="'#offcanvasBottom' + rankmovie.id" 
+                      aria-controls="offcanvasBottom">
+                <span class="fs-4" style="color: gainsboro">{{index+1}}위 - {{ rankmovie.title }} - {{ rankmovie.vote_average }}점</span>
               </button>
-              <div class="offcanvas offcanvas-bottom" style="min-height: 25rem;" tabindex="-1" :id="'offcanvasBottom' + rankmovie.id" aria-labelledby="offcanvasBottomLabel">
+              <div class="offcanvas offcanvas-bottom text-dark" style="min-height: 25rem; background-color:gainsboro" tabindex="-1" :id="'offcanvasBottom' + rankmovie.id" aria-labelledby="offcanvasBottomLabel">
                 <div class="offcanvas-header">
                   <h3 class="offcanvas-title" id="offcanvasBottomLabel">{{ rankmovie.title }}</h3>
                   <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -56,15 +47,43 @@
                   {{rankmovie.overview}}
                 </div>
               </div>
-
             </div>
           </div>
         </div>
         <div class="col-12 col-md-4 ">
           <h2>내가 찜한 영화</h2>
-          <vue-carousel :data="data"></vue-carousel>
-          <div v-for="likemovie in likeMovies" :key="likemovie.id">
-            <h4>{{ likemovie.title }}</h4>
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="../assets/좋아요.png" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" v-for="likemovie in likeMovies" :key="likemovie.id">
+                <figure @mouseover="movieHover = true"
+                        @mouseleave="movieHover = false"  class="myfigure">
+                  <img @click="moveMovieDetail(likemovie)" :src="'https://image.tmdb.org/t/p/w500/' + likemovie.poster_path"  class="img-responsive img-rounded figure-img movie-img" valign="absmiddle" />
+                  <div @click="moveMovieDetail(likemovie)" class="figure-overlay movie-img">                        
+                    <div v-if="movieHover">   
+                      <div class="figure-overlay-description">
+                        <p style="font-size: 30px">{{likemovie.title}}</p>
+                        개봉일:{{likemovie.release_date}} <br>
+                        상영시간: {{likemovie.runtime}}분 <br>
+                        평점: {{likemovie.vote_average}} <br>
+                        user평점: {{likemovie.movie_vote}} <br>                      
+                      </div>       
+                    </div>
+                  </div>
+                </figure>
+              </div>
+
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
         </div>
       </div>
@@ -221,8 +240,9 @@ export default {
 
 .movie-img {
   cursor: pointer;
+  border: 2px solid transparent;
 }
 .movie-img:hover {
-  border: 5px solid crimson;
+  border: 2px solid crimson;
 }
 </style>
