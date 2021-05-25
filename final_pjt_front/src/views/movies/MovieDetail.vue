@@ -1,31 +1,29 @@
 <template>
-  <div>    
+  <div style="font-family: 'Jua', sans-serif;">    
     <div v-if="movie">
       <!--  -->
-      <h1>
-      {{ movie.title }}
-      </h1>
-      <div class="container">
-        <div class="row p-5">        
-          <div class="col-3">
+
+      <div class="container">      
+        <div class="row">        
+          <div class="col-md-3">
             <div>
               <img :src="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" height='50%' width='100%'>
             </div>
           </div>
-          <div class="col-9 " style="border: 4px solid grey;"> 
-            <h3>Original Title: </h3>
-            <h2>{{ movie.original_title}}</h2>            
+          <div class="col-md-9 " style="border: 4px solid grey;"> 
+                      
+            <h2> {{ movie.title }} ({{ movie.original_title}})</h2>            
             <hr>
             <h3>줄거리</h3> <br>
             <div class="d-inline-flex p-2 bd-highlight justify-content-center" >{{ movie.overview }} <br></div>
             
             <hr>
-            <div class="row p-2">
-              <div class="col-3 p-2" style="border: 2px solid grey;">
-                <p>개봉: {{ movieReleasdate }} 년</p>
-                <p>러닝 타임: {{ movie.runtime }}분</p>
+            <div class="row p-2" style="">
+              <div class="col-md-3 p-2 align-self-center" style="float: none; margin:100 auto;">
+                <h3>개봉: {{ movieReleasdate }} 년</h3>
+                <h3>러닝 타임: {{ movie.runtime }}분</h3>
               </div>
-              <div class="col-6 overflow-auto" style="border: 2px solid grey;">
+              <div class="col-md-6 align-self-center" style="">
                 <h3>리뷰 평점</h3>
                 <h3>영화 평점: {{ movie.vote_average }}점 
                   <star-rating :inline='true'
@@ -33,7 +31,9 @@
                               :increment="0.1"              
                               :rating="parseFloat(movie.vote_average/2)"
                               :star-size="20"
-                              :show-rating="false"     
+                              :show-rating="false"
+                              active-color="#E50914" 
+                              :glow="10"    
                           ></star-rating>
                 </h3>
                 <h3>User 평점: {{ movie.movie_vote * 2 }}점
@@ -42,21 +42,23 @@
                               :rating="movie.movie_vote"
                               :star-size="1"
                               :show-rating="false"   
-                              :inline=true          
+                              :inline=true    
+                              active-color="#E50914"                             
+                              :glow="5"      
                           ></star-rating>
                   </h3>             
               </div>
-              <div class="col-3" style="border: 2px solid grey;">
-                <p>이 영화를 찜한 사람은 {{ likeCnt }}명</p>
-                <form id="like-form">
+              <div class="col-md-3 align-self-center" style="">
+                <h3>영화를 찜한 사람 {{ likeCnt }}명</h3>
+                <form id="like-form" style="top: 50%;">
                   <div v-if="!likeUsers.includes(userId)">
                     <button  class="btn btn-link" @click.prevent="onLike(movie)">
-                      <i class="fas fa-heart fa-lg" style="color:white;"></i>
+                      <i class="fas fa-heart fa-3x" style="color:white;"></i>
                     </button>
                   </div>
                   <div v-else>
                     <button  class="btn btn-link" @click.prevent="onLike(movie)">
-                      <i class="fas fa-heart fa-lg" style="color:crimson;"></i>
+                      <i class="fas fa-heart fa-3x" style="color:crimson;"></i>
                     </button>
                   </div>      
                 </form>
@@ -64,64 +66,63 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="embed-responsive embed-responsive-16by9" >
-            <iframe   
-              class="embed-responsive-item"
-              :src= "videoUrl"
-              frameborder="0" 
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-              style="width:100%; height:100%"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-        
-        <!--  --> 
-        <hr>
-        <div class="row">
-          <h3>Review</h3>
-          <li v-for="review in reviews" :key="review.id">
-            <div v-if="review.completed">
-              <div>
-                <star-rating v-model="review.person_vote" 
-                              v-bind:star-size="5"
-                              :show-rating="false"                          
-                              >
-                </star-rating>
-              </div>
-              <input type="text" v-model="review.content">
-              <button @click.prevent="updateReview(review)">완료</button>
-            </div>
-            <div v-else>
-              {{ review.content }}  평점 : {{ review.person_vote*2 }}점 <br>
-              <div v-if="review.user === userId">
-                <button @click.prevent="updateReview(review)">수정</button>
-              </div>
-            </div>
-            <div v-if="review.user === userId">
-              <button @click.prevent="deleteReview(review)">삭제</button>
-            </div>
-          </li>
-        </div>
-        <hr>
-        <div class="row">
-          <form v-if="!reviewExist">        
-            <div>
-              <star-rating v-model="rating" 
-                          v-bind:star-size="5"
-                          :show-rating="false"
-                          
-                          >
-              </star-rating>
-              <span>{{ rating * 2 }}</span>
-            </div>
-            <p>내용 : <input type="text" v-model="review_content"></p>
-            <button @click.prevent="reviewCreate">+</button>
-          </form>        
+        <br>
+        <h1>Trailer</h1>  
+        <div class="embed-responsive embed-responsive-16by9" style="">
+          <iframe   
+            class="embed-responsive-item"
+            :src= "videoUrl"
+            frameborder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            style="allign: middle;"
+          ></iframe>
         </div>
       </div>
+      <!--  --> 
+
+      <hr>
+      <h3>Review</h3>
+      <li v-for="review in reviews" :key="review.id">
+        <div v-if="review.completed">
+          <div>
+            <star-rating v-model="review.person_vote" 
+                          v-bind:star-size="5"
+                          :show-rating="false"                          
+                          >
+            </star-rating>
+          </div>
+          <input type="text" v-model="review.content">
+          <button @click.prevent="updateReview(review)">완료</button>
+        </div>
+        <div v-else>
+          {{ review.content }}  평점 : {{ review.person_vote*2 }}점 <br>
+          <div v-if="review.user === userId">
+            <button @click.prevent="updateReview(review)">수정</button>
+          </div>
+        </div>
+        <div v-if="review.user === userId">
+          <button @click.prevent="deleteReview(review)">삭제</button>
+        </div>
+      </li>
+      <hr>
+
+        <form v-if="!reviewExist">        
+          <div>
+            <star-rating v-model="rating" 
+                        v-bind:star-size="5"
+                        :show-rating="false"
+                        
+                        >
+            </star-rating>
+            <span>{{ rating * 2 }}</span>
+          </div>
+          <p>내용 : <input type="text" v-model="review_content"></p>
+          <button @click.prevent="reviewCreate">+</button>
+        </form>        
+      
     </div>
+
   </div>
 </template>
 
