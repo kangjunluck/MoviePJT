@@ -1,40 +1,81 @@
 <template>
-  <div>
-    <h2>Movie Detail</h2>
+  <div>    
     <div v-if="movie">
       <!--  -->
-      <!-- <div class="row p-2">
+      <h1>
+      {{ movie.title }}
+      </h1>
+      <div class="row p-5">        
         <div class="col-3">
           <div>
-            <img src="{{ movie.poster_path }}" alt="{{ movie.title }}_poster" width='100%'>
+            <img :src="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" height='50%' width='100%'>
           </div>
         </div>
-        <div class="col-9">
-          <h3>
-          {{ movie.title }}
-          </h3>
-          <h5>
-          {{ movie.overview }}
-          </h5>
+        <div class="col-9 " style="border: 4px solid grey;"> 
+          <h3>Original Title: </h3>
+          <h2>{{ movie.original_title}}</h2>            
+          <hr>
+          <h3>줄거리</h3> <br>
+          <div class="d-inline-flex p-2 bd-highlight justify-content-center" >{{ movie.overview }} <br></div>
+          
+          <hr>
+          <div class="row p-2">
+            <div class="col-3 p-2" style="border: 2px solid grey;">
+              <p>개봉: {{ movieReleasdate }} 년</p>
+              <p>러닝 타임: {{ movie.runtime }}분</p>
+            </div>
+            <div class="col-6 overflow-auto" style="border: 2px solid grey;">
+              <h3>리뷰 평점</h3>
+              <h3>영화 평점: {{ movie.vote_average }}점 
+                <star-rating :inline='true'
+                             :read-only="true"     
+                             :increment="0.1"              
+                             :rating="parseFloat(movie.vote_average/2)"
+                             :star-size="20"
+                             :show-rating="false"     
+                        ></star-rating>
+              </h3>
+              <h3>User 평점: {{ movie.movie_vote * 2 }}점
+                <star-rating :read-only="true"                                  
+                             :increment="0.1"              
+                             :rating="movie.movie_vote"
+                             :star-size="1"
+                             :show-rating="false"   
+                             :inline=true          
+                        ></star-rating>
+                </h3>             
+            </div>
+            <div class="col-3" style="border: 2px solid grey;">
+              <p>이 영화를 찜한 사람은 {{ likeCnt }}명</p>
+              <form id="like-form">
+                <div v-if="!likeUsers.includes(userId)">
+                  <button  class="btn btn-link" @click.prevent="onLike(movie)">
+                    <i class="fas fa-heart fa-lg" style="color:white;"></i>
+                  </button>
+                </div>
+                <div v-else>
+                  <button  class="btn btn-link" @click.prevent="onLike(movie)">
+                    <i class="fas fa-heart fa-lg" style="color:crimson;"></i>
+                  </button>
+                </div>      
+              </form>
+            </div>
+          </div>
         </div>
-      </div> -->
-      <!--  -->
-      <h3>{{ movie.title }}</h3>
-      <p>{{ movie.overview }}</p>
 
-      <div class="embed-responsive embed-responsive-16by9" >
-        <iframe   
-          class="embed-responsive-item"
-          :src= "videoUrl"
-          frameborder="0" 
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen
-          style="allign: middle; display:block; width:50vw; height: 50vh"
-        ></iframe>
+        <div class="embed-responsive embed-responsive-16by9" >
+          <iframe   
+            class="embed-responsive-item"
+            :src= "videoUrl"
+            frameborder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            style="allign: middle; display:block; width:50vw; height: 50vh"
+          ></iframe>
+        </div>
       </div>
-      <p>이 영화의 평점은 {{ movie.vote_average }}점</p>
-      <p>유저들의 평점은 {{ movie.movie_vote * 2 }}점</p>
-      <p>이 영화를 좋아하는 사람은 {{ likeCnt }}명 </p>
+      <!--  --> 
+
       <form id="like-form">
         <div v-if="!likeUsers.includes(userId)">
           <button  class="btn btn-link" @click.prevent="onLike(movie)">
@@ -45,9 +86,7 @@
           <button  class="btn btn-link" @click.prevent="onLike(movie)">
             <i class="fas fa-heart fa-lg" style="color:crimson;"></i>
           </button>
-        </div>
-      
-
+        </div>      
       </form>
       <hr>
       <h3>Review</h3>
@@ -56,8 +95,7 @@
           <div>
             <star-rating v-model="review.person_vote" 
                           v-bind:star-size="5"
-                          :show-rating="false"
-                          
+                          :show-rating="false"                          
                           >
             </star-rating>
           </div>
@@ -75,19 +113,21 @@
         </div>
       </li>
       <hr>
-      <form>
-        <div>
-          <star-rating v-model="rating" 
-                       v-bind:star-size="5"
-                       :show-rating="false"
-                       
-                       >
-          </star-rating>
-          <span>{{ rating * 2 }}</span>
-        </div>
-        <p>내용 : <input type="text" v-model="review_content"></p>
-        <button @click.prevent="reviewCreate">+</button>
-      </form>
+
+        <form v-if="!reviewExist">        
+          <div>
+            <star-rating v-model="rating" 
+                        v-bind:star-size="5"
+                        :show-rating="false"
+                        
+                        >
+            </star-rating>
+            <span>{{ rating * 2 }}</span>
+          </div>
+          <p>내용 : <input type="text" v-model="review_content"></p>
+          <button @click.prevent="reviewCreate">+</button>
+        </form>        
+      
     </div>
 
   </div>
@@ -108,12 +148,14 @@ export default {
       id: this.$route.params.movie_id,
       userId: null,
       movie: null,
+      movieReleasdate: null,
       base_vote: null,
       reviews: null,
       review_content : '',
       rating: 3,
       movie_vote: null,
 
+      reviewExist: false,
       likeCnt: null,
       likeUsers: [],
       baseUrl: 'https://www.youtube.com/embed/',
@@ -147,8 +189,9 @@ export default {
         url: `http://127.0.0.1:8000/movies/detail/${this.id}/`,
         headers: this.setToken()
       })
-        .then((res) => {
-          this.movie = res.data
+        .then((res) => {          
+          this.movie = res.data          
+          this.movieReleasdate = res.data.release_date.substring(0,4)          
           this.videoUrl = this.baseUrl + res.data.video
           this.likeCnt = res.data.like_users.length
           this.likeUsers = res.data.like_users
@@ -175,8 +218,7 @@ export default {
           this.getMovie()
           this.getReviews()
         })
-        .catch((err) => {
-          console.log('여기?')
+        .catch((err) => {          
           console.log(err)
         })
     },
@@ -189,6 +231,13 @@ export default {
       })
         .then((res) => {
           this.reviews = res.data.review_set
+          console.log(this.userId, this.reviews, this.reviews.user)
+          this.reviews.forEach(element=>{            
+            if (this.userId == element.user) {
+              this.reviewExist = true
+            }
+          })          
+          
         })
         .catch((err) => {
           console.log(err)
