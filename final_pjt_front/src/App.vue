@@ -6,7 +6,7 @@
         <router-link :to="{ name: 'Profile' }">Profile</router-link> |
         <router-link :to="{ name: 'Similar' }">Similar</router-link> |
         <router-link :to="{ name: 'Movie' }">Movie</router-link> |
-        <router-link :to="{ name: 'Article' }">Article</router-link> |
+        <router-link :to="{ name: 'Article' }">Community</router-link> |
         <router-link @click.native="logout" to="#">Logout</router-link>
       </span>
       <span v-else>
@@ -19,7 +19,6 @@
 </template>
 
 <script>
-
 
 export default {
   name: 'App',
