@@ -3,8 +3,10 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-4">
-          <h2>여기는 나닮배</h2>
-          <div class="border-right-danger">
+          <h2>나닮배</h2>
+          ↓나를 닮은 배우 알아보러 가기↓
+          <div>
+            <router-link :to="{ name: 'Similar' }"><img style="width:20rem;" src="../assets/마블리.jpg" alt=""></router-link>
           </div>
         </div>
         <div class="col-12 col-md-4 ">

@@ -39,14 +39,21 @@ cnt = 1
 for num in movie_list:
     try:
         file_data = OrderedDict()
+        # detail
         url = "https://api.themoviedb.org/3/movie/{}?api_key={}&language=ko-kr".format(num, apikey)
         r = requests.get(url)
         data = json.loads(r.text)
         pprint(data)
+        # actor
+        # url = "https://api.themoviedb.org/3/movie/{}/credits?api_key={}&language=ko-kr".format(num, apikey)
+        # r_actor = requests.get(url)
+        # data_actor = json.loads(r_actort.text)
+        # pprint(data)
+        
+        # 예고편 
         video_url = "https://api.themoviedb.org/3/movie/{}/videos?api_key={}".format(num, apikey)
         video_r = requests.get(video_url)
-        video_data = json.loads(video_r.text)
-        # print(video_data)
+        video_data = json.loads(video_r.text)        
         video_id = video_data["results"][-1]["key"]
         
         

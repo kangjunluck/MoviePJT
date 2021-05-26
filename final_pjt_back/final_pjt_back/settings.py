@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'movies',
     'rest_framework',
     'django_seed',
+    'imagekit',
+    'bootstrap5',
     # django cors
     'corsheaders',
     'django.contrib.admin',
@@ -74,7 +76,7 @@ ROOT_URLCONF = 'final_pjt_back.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'final_pjt_back' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -151,3 +153,11 @@ AUTH_USER_MODEL = 'accounts.User'
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=5),
 }
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'final_pjt_back' / 'static',
+    ]
+
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'

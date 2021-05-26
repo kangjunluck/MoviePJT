@@ -68,16 +68,23 @@
           </div>
         </div>
         <br>
-        <h1>Trailer</h1>  
-        <div class="embed-responsive embed-responsive-16by9" style="">
-          <iframe   
-            class="embed-responsive-item"
-            :src= "videoUrl"
-            frameborder="0" 
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-            style="allign: middle;"
-          ></iframe>
+        <!-- 예고편 -->
+        <h1>Trailer</h1>
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8">
+            <div class="embed-responsive embed-responsive-16by9 embed-youtube">
+              <iframe
+                class="embed-responsive-item"
+                :src= "videoUrl"
+                frameborder="0" 
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                style="align: middle;"
+              ></iframe>
+            </div>
+          </div>
+          <div class="col-2"></div>
         </div>
       </div>
       <!--  --> 
@@ -422,5 +429,18 @@ export default {
 </script>
 
 <style>
+.embed-youtube {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+}
 
+.embed-youtube iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 </style>
