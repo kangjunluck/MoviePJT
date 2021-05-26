@@ -1,37 +1,61 @@
 <template>
-  <div>
-    <h2>Article Detail</h2>
-    {{ newtitle }}<br>
-    {{ newcontent }}
-    <div v-if="newUserId === userId">
-      <button @click="moveUpdate">수정</button>
-      <button @click="deleteArticle">삭제</button>
-    </div>
-    <hr>
-    <h2>Comment</h2>
-    <ul>
-      <li v-for="comment in comments" :key="comment.id">
-        <div v-if="comment.completed">
-          <input type="text" v-model="comment.content">
-          <button @click.prevent="updateComment(comment)">완료</button>
+  <div style="font-family: 'Jua', sans-serif;">
+    <h2>Title : {{ article.title }}</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
         </div>
-        <div v-else>
-          {{ comment.content }}<br>
-          {{ comment.created_at }}<br>
-          {{ comment.updated_at }}<br>
-          <div v-if="comment.user === userId">
-            <button @click.prevent="updateComment(comment)">수정</button>
+        <div class="col-8">
+          <div class="fs-3">
+            <p class="my-0 bg-dark text-white" style="text-align:left;">
+              작성자 : {{ article.username }}</p>
+            <p class="my-0 form-control bg-dark fs-3" style="text-overflow: ellipsis; text-align:justify; height: 10rem;  color:gainsboro;">{{ article.content }}</p>
+            <p class="my-0 bg-dark fs-5" style="text-align:right; color:gainsboro;">작성 :{{ $moment(article.created_at).format('YYYY-MM-DD') }}</p>
+            <p class="my-0 bg-dark fs-5" style="text-align:right; color:gainsboro;">수정 :{{ $moment(article.updated_at).format('YYYY-MM-DD') }}</p>
           </div>
+          <div v-if="newUserId === userId">
+            <button @click="moveUpdate">수정</button>
+            <button @click="deleteArticle">삭제</button>
+          </div>
+          <hr>
+          <h4 style="text-align: left;">Comments</h4>
+
+          <div v-for="(comment,index) in comments" :key="comment.id" class="fs-3">
+            <div v-if="comment.completed" class="fs-6">
+              <div class="d-flex justify-content-between">
+                <div class="fs-4">
+                  {{ comment.comment_user }}의 댓글 수정중
+                </div>
+                <button class="fs-6" @click.prevent="updateComment(comment)">완료</button>
+              </div>
+              <input class="form-control" type="text" v-model="comment.content">
+            </div>
+            <div v-else>
+              <div class="d-flex justify-content-between">
+                <div class="my-0 bg-dark text-white fs-4" style="text-align:left;">
+                  {{ index+1 }}. {{ comment.comment_user }}
+                </div>
+                <div v-if="comment.user === userId">
+                  <button class="fs-6" @click.prevent="updateComment(comment)">수정</button>
+                </div>
+              </div>
+              <p class="my-0 form-control bg-dark" style="text-overflow: ellipsis; text-align:justify;  color:gainsboro;">{{ comment.content }}</p>
+              <p class="my-0 bg-dark fs-6" style="text-align:right; color:gainsboro;">작성 :{{ $moment(comment.created_at).format('YYYY-MM-DD') }}</p>
+              <p class="my-0 bg-dark fs-6" style="text-align:right; color:gainsboro;">수정 :{{ $moment(comment.updated_at).format('YYYY-MM-DD') }}</p>
+            </div>
+            <div v-if="comment.user === userId" class="d-flex flex-row-reverse">
+              <button class="fs-6" @click.prevent="deleteComment(comment)">삭제</button>
+            </div>
+          </div>
+          <form>
+            <span>댓글 작성 <input type="text" style="width: 30rem;" v-model="comment_content"></span>      
+            <button @click.prevent="commentCreate">추가</button>
+          </form>
         </div>
-        <div v-if="comment.user === userId">
-          <button @click.prevent="deleteComment(comment)">삭제</button>
+        <div class="col-2">
         </div>
-      </li>
-    </ul>
-    <form>
-      <p>내용 : <input type="text" v-model="comment_content"></p>      
-      <button @click.prevent="commentCreate">+</button>
-    </form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -95,7 +119,7 @@ export default {
       this.$router.push({
         name: 'UpdateArticle',
         params: {
-          id: this.id,
+          article_id: this.id,
         }
       })
     },

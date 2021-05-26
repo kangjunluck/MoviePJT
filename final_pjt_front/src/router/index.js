@@ -55,7 +55,7 @@ const routes = [
     component: CreateArticle
   },
   {
-    path: '/articles/update',
+    path: '/articles/:article_id/update',
     name: 'UpdateArticle',
     component: UpdateArticle
   },

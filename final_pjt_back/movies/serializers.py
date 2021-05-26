@@ -5,6 +5,7 @@ from .models import Movie, Review
 
 # 리뷰 전체 조회
 class ReviewListSerializer(serializers.ModelSerializer):
+    review_user = serializers.CharField(source="user.username", read_only=True)
     
     class Meta:
         model = Review

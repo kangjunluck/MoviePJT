@@ -55,10 +55,10 @@
           <h2>내가 찜한 영화</h2>
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-              <div class="carousel-item active">
+              <div class="carousel-item active" data-interval="2500">
                 <img src="../assets/좋아요.png" class="d-block w-100" alt="...">
               </div>
-              <div class="carousel-item" v-for="likemovie in likeMovies" :key="likemovie.id">
+              <div class="carousel-item" data-interval="2500" v-for="likemovie in likeMovies" :key="likemovie.id">
                 <figure @mouseover="movieHover = true"
                         @mouseleave="movieHover = false"  class="myfigure">
                   <img @click="moveMovieDetail(likemovie)" :src="'https://image.tmdb.org/t/p/w500/' + likemovie.poster_path"  class="img-responsive img-rounded figure-img movie-img" valign="absmiddle" />
