@@ -5,7 +5,7 @@ from .models import Article, Comment
 # 댓글 조회
 class CommentListSerializer(serializers.ModelSerializer):
 
-    # article_title = serializers.CharField(source="article.title", read_only=True)
+    comment_user = serializers.CharField(source="user.username", read_only=True)
 
     class Meta:
         model = Comment

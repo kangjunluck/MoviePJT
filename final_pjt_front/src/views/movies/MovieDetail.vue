@@ -18,14 +18,14 @@
             <div class="d-inline-flex p-2 bd-highlight justify-content-center" >{{ movie.overview }} <br></div>
             
             <hr>
-            <div class="row p-2" style="">
-              <div class="col-md-3 p-2 align-self-center" style="float: none; margin:100 auto;">
+            <div class="row p-1" style="">
+              <div class="col-md-4 align-self-center" style="float: none; margin:100 auto;">
                 <h3>개봉: {{ movieReleasdate }} 년</h3>
                 <h3>러닝 타임: {{ movie.runtime }}분</h3>
               </div>
-              <div class="col-md-6 align-self-center" style="">
-                <h3>리뷰 평점</h3>
-                <h3>영화 평점: {{ movie.vote_average }}점 
+              <div class="col-md-4 align-self-center" style="">
+                <!-- <h3>리뷰 평점</h3> -->
+                <h3>영화 평점: {{ movie.vote_average }}점 <br>
                   <star-rating :inline='true'
                               :read-only="true"     
                               :increment="0.1"              
@@ -36,7 +36,7 @@
                               :glow="10"    
                           ></star-rating>
                 </h3>
-                <h3>User 평점: {{ movie.movie_vote * 2 }}점
+                <h3>User 평점: {{ movie.movie_vote * 2 }}점 <br>
                   <star-rating :read-only="true"                                  
                               :increment="0.1"              
                               :rating="movie.movie_vote"
@@ -48,8 +48,9 @@
                           ></star-rating>
                   </h3>             
               </div>
-              <div class="col-md-3 align-self-center" style="">
-                <h3>영화를 찜한 사람 {{ likeCnt }}명</h3>
+              <div class="col-md-4 align-self-center" style="">
+                <h3>영화를 찜한 사람 <br> 
+                : {{ likeCnt }}명</h3>
                 <form id="like-form" style="top: 50%;">
                   <div v-if="!likeUsers.includes(userId)">
                     <button  class="btn btn-link" @click.prevent="onLike(movie)">
@@ -84,44 +85,53 @@
       <div class="container">
         <hr>  
         <h3>유저 리뷰</h3>
-        <ul>
-          <div v-for="review in reviews" :key="review.id">
-            <div v-if="review.completed">
-              <div>
-                <star-rating v-model="review.person_vote" 
-                              v-bind:star-size="5"
-                              :show-rating="false"
-                              :inline=true
-                              active-color="#E50914"                           
-                              >
-                </star-rating>
-              </div>
-              <input type="text" v-model="review.content">              
-              <button @click.prevent="updateReview(review)" class="btn btn-danger">수정완료</button>
-              
+        <div v-for="review in reviews" :key="review.id">
+          <div v-if="review.completed">
+            <p class="my-0" style="text-align:left;">{{review.review_user}}의 리뷰 수정중</p>
+            <input class="form-control" type="text" v-model="review.content">              
+            <div class="d-flex justify-content-between">
+              <star-rating v-model="review.person_vote" 
+                            v-bind:star-size="5"
+                            :show-rating="false"
+                            :inline=true
+                            active-color="#E50914"                           
+                            >
+              </star-rating>
+              <button @click.prevent="updateReview(review)" class="btn btn-danger" style="height:3rem">수정완료</button>
             </div>
-            <div v-else>
-              <h2>{{ review.content }}                               
-              </h2>
-                  <star-rating :read-only="true"                                  
-                               :increment="0.1"              
-                               :rating="review.person_vote"
-                               :show-rating="false"   
-                               :inline=true    
-                               :glow="5"
-                               v-bind:star-size="1"
-                               active-color="#E50914"></star-rating>
-                  {{ review.person_vote*2 }}점
-                <div class="inline" v-if="review.user === userId">
-                  <button @click.prevent="updateReview(review)" class="btn btn-secondary">수정</button>
-                  <button @click.prevent="deleteReview(review), reviewExist=false" class="btn btn-secondary">삭제</button>
-                </div>                             
-            </div>
-            <hr>                        
+            
           </div>
-        </ul>
-        <hr>
-        <h3>리뷰 작성</h3>        
+          <div v-else>
+            <div class="d-flex justify-content-between">
+              <p class="my-0" style="text-align:left;">작성자: {{review.review_user}}</p>
+              <div class="inline" v-if="review.user === userId">
+                <button @click.prevent="updateReview(review)" class="btn btn-secondary" style="font-size: 0.5rem;">수정</button>
+                <button @click.prevent="deleteReview(review), reviewExist=false" class="btn btn-secondary"  style="font-size: 0.5rem;">삭제</button>
+              </div>                             
+            </div>
+            <p class="my-0 form-control bg-dark" style="text-overflow: ellipsis; text-align:justify;  color:gainsboro;">{{ review.content }}</p>
+            <div class="row">
+              <div class="col-6 d-flex align-items-center">
+                <star-rating :read-only="true"                                  
+                              :increment="0.1"              
+                              :rating="review.person_vote"
+                              :show-rating="false"   
+                              :inline="true"    
+                              :glow="5"
+                              v-bind:star-size="1"
+                              active-color="#E50914"></star-rating>
+                <span class="fs-3">{{ review.person_vote*2 }}점</span>
+              </div>
+              <div class="col-6">
+                <p class="my-0 fs-6" style="text-align:right; color:gainsboro;">작성 :{{ $moment(review.created_at).format('YYYY-MM-DD') }}</p>
+                <p class="my-0 fs-6" style="text-align:right; color:gainsboro;">수정 :{{ $moment(review.updated_at).format('YYYY-MM-DD') }}</p>
+              </div>
+            </div>
+          </div>
+          <hr>                        
+        </div>
+        
+        <h1>리뷰 작성</h1>        
         <form v-if="!reviewExist">        
           <h3>
             <input type="text" v-model="review_content" placeholder="리뷰내용을 입력해주세요">

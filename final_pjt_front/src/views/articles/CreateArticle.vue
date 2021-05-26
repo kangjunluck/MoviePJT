@@ -1,13 +1,27 @@
 <template>
-  <div>
-    <form>
-      <p>title :<input type="text" v-model.trim="title" ></p>
-      <p>내용<br>
-        <textarea name="" id="" cols="30" rows="10" v-model.trim="content"></textarea>
-      </p>
-      <button @click.prevent="createArticle">작성완료</button>
-    </form>
+  <div style="font-family: 'Jua', sans-serif;">
+    <h2>게시글 작성 중..</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+          <form>
+            <p class="fs-3 my-0" style="text-align: left;">TITLE</p>
+              <input type="text" class="form-control" style="background-color: gainsboro;" v-model.trim="title">
+            <p class="fs-3 my-0" style="text-align: left;">CONTENT</p>
+              <textarea class="form-control fs-4" style="background-color: gainsboro;" name="" id="" cols="30" rows="10" v-model.trim="content" ></textarea>
+            <hr>
+            <button class="fs-3" @click.prevent="createArticle">작성완료</button>
+          </form>
+        </div>
+        <div class="col-2">
+        </div>
+      </div>
+    </div>
   </div>
+
+
 </template>
 
 <script>

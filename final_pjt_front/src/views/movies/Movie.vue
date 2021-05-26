@@ -4,6 +4,7 @@
     <div class='container'>
       <div class="row">
         <div class="col-2">
+          <div class="btn btn-primary" @click.prevent="getMovies">전체영화조회</div>
         </div>
         <div class="col-8">
           <multiselect      
@@ -14,26 +15,27 @@
           </multiselect>
         </div>
       </div>
-      <div class="btn btn-primary" @click.prevent="getMovies">전체영화조회</div>
+      <br>
+      <hr>
       <div class="row">
-        <div class="col-1">
-          <div class="btn btn-primary" @click.prevent="genreFilter(28)">액션</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(12)">모험</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(35)">코미디</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(80)">범죄</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(99)">다큐멘터리</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(10751)">가족</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(14)">판타지</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(36)">역사</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(27)">공포</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(10402)">음악</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(9648)">미스터리</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(10749)">로맨스</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(878)">SF</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(10700)">TV 영화</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(53)">스릴러</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(10752)">전쟁</div>
-          <div class="btn btn-primary" @click.prevent="genreFilter(37)">서부</div>          
+        <div class="d-flex flex-column justify-content-md-start col-1">  
+          <div class="btn btn-danger" @click.prevent="genreFilter(28)">액션</div> 
+          <div class="btn btn-danger" @click.prevent="genreFilter(12)">모험</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(35)">코미디</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(80)">범죄</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(99)">다큐멘터리</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(10751)">가족</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(14)">판타지</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(36)">역사</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(27)">공포</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(10402)">음악</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(9648)">미스터리</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(10749)">로맨스</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(878)">SF</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(10700)">TV 영화</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(53)">스릴러</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(10752)">전쟁</div>
+          <div class="btn btn-danger" @click.prevent="genreFilter(37)">서부</div>          
         </div>
         <div class="col-11">
           <div class="container">
@@ -55,6 +57,7 @@
                     </div>
                   </div>                  
                 </figure>
+              <hr>
               </content>
               <aside class="col-md-10 col-lg-10 col-sm-10">                 
               </aside>
@@ -214,6 +217,12 @@ export default {
   margin: 0;
   display: block;  
   height: 100%;
+    transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transition: all 0.5s ease-in-out;
   /* background: rgba(0, 0, 0, 0.6);
     -webkit-transition: .6s ease;
     transition: .6s ease;
@@ -242,6 +251,11 @@ export default {
     -webkit-transition: .6s ease;
     transition: .6s ease;
   text-align: center;
+    transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
 }
 
 .movie-img {
