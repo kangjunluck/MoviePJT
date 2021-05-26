@@ -2,20 +2,22 @@
   <div class="home" style="font-family: 'Jua', sans-serif;">
     <h1>나닮배(나를 닮은 배우)</h1>
     <hr>
-    <a class="fs-2" href="http://127.0.0.1:8000/movies/uploadimg/">사진등록하러가기</a>
+    <a class="fs-2" href="http://127.0.0.1:8000/movies/uploadimg/">사진등록하러가기</a><br><hr><br>    
     <div v-if="similarActor">
       <div class="container fs-3">
-        <div class="row">
-          <div class="col-6">
-            <h3>나를 닮은 배우는??</h3>
-            <p class="fs-2">{{ similarActor.actor_name }}</p>
-            <p class="fs-2">{{ similarActor.actor_confidence * 100 }}%</p>
-            
+        <div class="row">        
+          <div class="col-md-6">
+            <h1>나를 닮은 배우는??</h1>   
+            <hr>                                  
+            <a class="fs-2" :href="googleUrl" target='_blank'>{{ similarActor.actor_name }}</a>과            
+            <p class="fs-2">{{ similarActor.actor_confidence * 100 }}% 일치!!</p>                        
           </div>
-          <div class="col-6">
-            <h3>나닮배가 나온 영화</h3>
+          <div class="col-md-6">
+            <h1>나닮배가 나온 영화</h1>
+            <hr>
             <div v-for="(movie, index) in similarActor.movie_list" :key="index">
-              {{ index+1 }}. {{ movie }}
+              {{ index+1 }}.
+              <a class="fs-2" :href="baseUrl + movie" target='_blank'> {{ movie }}</a>                           
             </div>
           </div>
         </div>
@@ -40,6 +42,9 @@ export default {
       comments: null,
       reviews: null,
       similarActor: null,
+      baseUrl: 'https://www.google.com/search?q=',
+      googleUrl: '',
+      imgName: null,
     }
   },
   methods: {
@@ -76,6 +81,8 @@ export default {
         .then((res) => {
           console.log(res)
           this.similarActor = res.data
+          this.imgName = res.data.imgname
+          this.googleUrl = this.baseUrl + res.data.actor_name
         })
         .catch((err) => {
           console.log(err)

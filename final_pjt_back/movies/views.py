@@ -181,12 +181,13 @@ def find_actor(request):
         context = {
             'movie_list': movie_list,
             'actor_name': actor_name,
-            'actor_confidence': actor_confidence
+            'actor_confidence': actor_confidence,
+            'imgname': imgname
         }
-        print(context)
+        # print(context)
         return Response(context)
     else:
-        print("Error Code:" + rescode)
+        # print("Error Code:" + rescode)
         return Response("Error Code:" + rescode)
 
 

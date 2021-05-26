@@ -5,10 +5,9 @@
 
       <div class="container">      
         <div class="row">        
-          <div class="col-md-3">
-            <div>
-              <img :src="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" height='50%' width='100%'>
-            </div>
+          <div class="col-md-3">            
+            <img :src="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" height='100%' width='100%'>
+            
           </div>
           <div class="col-md-9 " style="border: 4px solid grey;"> 
                       
