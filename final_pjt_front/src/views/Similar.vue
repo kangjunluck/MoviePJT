@@ -1,7 +1,29 @@
 <template>
-  <div class="home">
-    Similar
-    {{ similarActor }}
+  <div class="home" style="font-family: 'Jua', sans-serif;">
+    <h1>나닮배(나를 닮은 배우)</h1>
+    <hr>
+    <a class="fs-2" href="http://127.0.0.1:8000/movies/uploadimg/">사진등록하러가기</a>
+    <div v-if="similarActor">
+      <div class="container fs-3">
+        <div class="row">
+          <div class="col-6">
+            <h3>나를 닮은 배우는??</h3>
+            <p class="fs-2">{{ similarActor.actor_name }}</p>
+            <p class="fs-2">{{ similarActor.actor_confidence * 100 }}%</p>
+            
+          </div>
+          <div class="col-6">
+            <h3>나닮배가 나온 영화</h3>
+            <div v-for="(movie, index) in similarActor.movie_list" :key="index">
+              {{ index+1 }}. {{ movie }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-else>
+      <p>사진을 먼저 등록해 주세요</p>
+    </div>
   </div>
 </template>
 

@@ -15,5 +15,4 @@ urlpatterns = [
     
     
     path('uploadimg/', views.uploadimg, name='uploadimg'),
-    path('upload/', views.upload, name='upload'),
 ]
