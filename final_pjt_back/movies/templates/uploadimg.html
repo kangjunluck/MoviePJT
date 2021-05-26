@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+  <div>
+    <div class="fs-3 text-center bg-primary p-3 text-white">사진등록 화면</div>
+    <form class="d-flex flex-column align-items-center" action="{% url 'movies:uploadimg' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input class="btn btn-primary" type="submit">
+    </form>
+    <a href="http://localhost:8080/similar">뒤로가기</a>
+  </div>
+{% endblock content %}
+
+

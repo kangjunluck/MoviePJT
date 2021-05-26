@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from imagekit.processors import ResizeToFill
+from imagekit.models import ProcessedImageField
 
 # Create your models here.
 class Genre(models.Model):

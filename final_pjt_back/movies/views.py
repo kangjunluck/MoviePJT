@@ -138,6 +138,8 @@ def rankmovie(request):
     return Response(context)
 
 
+imgname = ''
+
 @api_view(['GET'])
 @authentication_classes([JSONWebTokenAuthentication])
 @permission_classes([IsAuthenticated])
@@ -147,7 +149,7 @@ def find_actor(request):
     client_secret = "awJxrIA5Np"
     # url = "https://openapi.naver.com/v1/vision/face" # 얼굴감지
     url = "https://openapi.naver.com/v1/vision/celebrity" # 유명인 얼굴인식
-    files = {'image': open('./movies/민평홍.jpg', 'rb')}
+    files = {'image': open('./media/' + imgname, 'rb')}
     headers = {'X-Naver-Client-Id': client_id, 'X-Naver-Client-Secret': client_secret }
     response = requests.post(url,  files=files, headers=headers)
     rescode = response.status_code
@@ -192,23 +194,17 @@ def find_actor(request):
 # 유저이미지 올리기
 @require_http_methods(['GET', 'POST'])
 def uploadimg(request):
-    if request.method == 'POST':
-        print('왓니?')
-        form = PostForm(request.POST, request.FILES)
-        print(request.FILES)
-        print(form)
-        print('여기는?')
+    global imgname
+    if request.method == 'POST':        
+        form = PostForm(request.POST, request.FILES)                
         if form.is_valid():            
-            form.save()
-            
+            form.save() 
+            imgname = request.FILES['image']            
+            imgname = str(imgname)            
             return redirect('http://localhost:8080/similar')
     else:
         form = PostForm()
     context = {
         'form': form,
     }
-    return render(request, 'imgupload.html', context)
-
-
-def upload(request):
-    return render(request, 'imgupload.html')
+    return render(request, 'uploadimg.html', context)

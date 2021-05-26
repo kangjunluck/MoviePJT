@@ -5,9 +5,11 @@ attrs==20.3.0
 backcall==0.2.0
 beautifulsoup4==4.9.3
 bleach==3.3.0
+bs4==0.0.1
 certifi==2020.12.5
 cffi==1.14.5
 chardet==4.0.0
+click==7.1.2
 colorama==0.4.4
 coreapi==2.3.3
 coreschema==0.0.4
@@ -26,12 +28,14 @@ djangorestframework-jwt==1.11.0
 drf-yasg==1.20.0
 entrypoints==0.3
 Faker==8.2.0
+Flask==1.1.2
 idna==2.10
 importlib-metadata==2.1.1
 inflection==0.5.1
 ipykernel==5.5.0
 ipython==7.21.0
 ipython-genutils==0.2.0
+itsdangerous==1.1.0
 itypes==1.2.0
 jedi==0.18.0
 Jinja2==2.11.3
@@ -39,6 +43,7 @@ jsonschema==3.2.0
 jupyter-client==6.1.12
 jupyter-core==4.7.1
 jupyterlab-pygments==0.1.2
+lxml==4.6.2
 MarkupSafe==1.1.1
 mistune==0.8.4
 nbclient==0.5.3
@@ -81,4 +86,5 @@ uritemplate==3.0.1
 urllib3==1.26.4
 wcwidth==0.2.5
 webencodings==0.5.1
+Werkzeug==1.0.1
 zipp==3.4.1
