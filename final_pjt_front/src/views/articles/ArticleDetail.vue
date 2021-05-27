@@ -9,7 +9,7 @@
           <div class="fs-3">
             <p class="my-0 bg-dark text-white" style="text-align:left;">
               작성자 : {{ article.username }}</p>
-            <p class="my-0 form-control bg-dark fs-3" style="text-overflow: ellipsis; text-align:justify; height: 10rem;  color:gainsboro;">{{ article.content }}</p>
+            <p class="my-0 form-control bg-dark fs-3" style="overflow: auto; text-align:justify; height: 30rem;  color:gainsboro;">{{ article.content }}</p>
             <p class="my-0 bg-dark fs-5" style="text-align:right; color:gainsboro;">작성 :{{ $moment(article.created_at).format('YYYY-MM-DD') }}</p>
             <p class="my-0 bg-dark fs-5" style="text-align:right; color:gainsboro;">수정 :{{ $moment(article.updated_at).format('YYYY-MM-DD') }}</p>
           </div>
