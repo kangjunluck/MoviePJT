@@ -7,8 +7,8 @@
         <router-link :class="{ 'article-item': true }" style="text-decoration: none; color:gainsboro; text-align:right;" :to="{ name: 'CreateArticle' }">CreateArticle</router-link>
       </p>
       <div class="row">
-        <div class="col-12">
-          <div v-for="(article, index) in articles" :key="article.pk" class="fs-3">
+        <div class="col-12" id="my-articles">
+          <div v-for="(article, index) in itemsForList" :key="article.pk" class="fs-3">
             <p class="my-0 bg-dark text-white" style="text-align:left;">
               {{ index+1 }}. {{ article.title }}
               <router-link class="changelink fs-4"
@@ -20,6 +20,13 @@
             <p class="my-0 bg-dark fs-5" style="text-align:right; color:gainsboro;">수정 :{{ $moment(article.updated_at).format('YYYY-MM-DD') }}</p>
           </div>
         </div>
+        <b-pagination
+          class="d-flex justify-content-center"
+          v-model="currentPage"
+          :total-rows="rows"
+          :per-page="perPage"
+          aria-controls="my-articles">
+        </b-pagination>
       </div>
     </div>
   </div>
@@ -34,7 +41,10 @@ export default {
 
   data: function () {
     return {
-      articles: null,
+      perPage : 2,
+      currentPage : 1,  
+
+      articles: [],
       userId: null,
 
       pageCnt: 0,
@@ -86,7 +96,18 @@ export default {
     } else {
       this.$router.push({name: 'Login'})
     }
-  }
+  },
+  computed : {
+    rows(){
+        return this.articles.length;
+    },
+    itemsForList() {
+      return this.articles.slice(
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage,
+      )
+    },
+  },
 }
 </script>
 

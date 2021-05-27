@@ -193,13 +193,15 @@ def find_actor(request):
 
 
 # 유저이미지 올리기
-@require_http_methods(['GET', 'POST'])
+# @api_view(['GET', 'POST'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def uploadimg(request):
     global imgname
-    if request.method == 'POST':        
-        form = PostForm(request.POST, request.FILES)                
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)              
         if form.is_valid():            
-            form.save() 
+            form.save()
             imgname = request.FILES['image']            
             imgname = str(imgname)            
             return redirect('http://localhost:8080/similar')
