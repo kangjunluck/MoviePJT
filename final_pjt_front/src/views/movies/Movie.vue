@@ -19,28 +19,28 @@
       <hr>
       <div class="row">
         <div class="d-flex flex-column justify-content-md-start col-1">  
-          <div class="btn btn-danger" @click.prevent="genreFilter(28)">액션</div> 
-          <div class="btn btn-danger" @click.prevent="genreFilter(12)">모험</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(35)">코미디</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(80)">범죄</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(99)">다큐멘터리</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(10751)">가족</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(14)">판타지</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(36)">역사</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(27)">공포</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(10402)">음악</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(9648)">미스터리</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(10749)">로맨스</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(878)">SF</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(10700)">TV 영화</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(53)">스릴러</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(10752)">전쟁</div>
-          <div class="btn btn-danger" @click.prevent="genreFilter(37)">서부</div>          
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(28)">액션</div> 
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(12)">모험</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(35)">코미디</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(80)">범죄</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(99)">다큐</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(10751)">가족</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(14)">판타지</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(36)">역사</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(27)">공포</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(10402)">음악</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(9648)">미스터리</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(10749)">로맨스</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(878)">SF</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(10700)">TV 영화</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(53)">스릴러</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(10752)">전쟁</div>
+          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(37)">서부</div>        
         </div>
         <div class="col-11">
           <div class="container">
-            <div class="row ">
-              <content class="col-md-4 col-lg-4 col-sm-4" v-for="movie in movies" :key="movie.id">
+            <div class="row" id="my_movies">
+              <content class="col-md-4 col-lg-4 col-sm-4" v-for="movie in itemsForList" :key="movie.id">
                 <figure @mouseover="movieHover = true"
                         @mouseleave="movieHover = false"  class="myfigure">
                   <span style="font-size: 30px; text-align: center; background: black; color: white;">{{ movie.title }}</span>
@@ -61,6 +61,13 @@
               </content>
               <aside class="col-md-10 col-lg-10 col-sm-10">                 
               </aside>
+              <b-pagination
+                class="d-flex justify-content-center"
+                v-model="currentPage"
+                :total-rows="rows"
+                :per-page="perPage"
+                aria-controls="my-movies">
+              </b-pagination>
             </div>
           </div>
         </div>
@@ -79,6 +86,9 @@ export default {
   components: { Multiselect },
   data () {
     return {
+      perPage : 9,
+      currentPage : 1,    
+
       movieHover: false,
       movies: [],
       moviesTitleList: [],
@@ -144,7 +154,6 @@ export default {
         })
       })
     },
-
     // 정렬 함수 ---------------------------------------
     genreFilter (genreId) {
       const myPromise = new Promise((resolve, reject) => {
@@ -187,7 +196,18 @@ export default {
     } else {
       this.$router.push({name: 'Login'})
     }
-  }
+  },
+  computed : {
+    rows(){
+        return this.movies.length;
+    },
+    itemsForList() {
+      return this.movies.slice(
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage,
+      )
+    },
+  },
 }
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
