@@ -20,6 +20,10 @@
           <hr>
           <h4 style="text-align: left;">Comments</h4>
 
+          <form>
+            <span>댓글 작성 <input type="text" style="width: 30rem;" v-model="comment_content"></span>      
+            <button @click.prevent="commentCreate">추가</button>
+          </form>
           <div v-for="(comment,index) in comments" :key="comment.id" class="fs-3">
             <div v-if="comment.completed" class="fs-6">
               <div class="d-flex justify-content-between">
@@ -47,10 +51,6 @@
               <button class="fs-6" @click.prevent="deleteComment(comment)">삭제</button>
             </div>
           </div>
-          <form>
-            <span>댓글 작성 <input type="text" style="width: 30rem;" v-model="comment_content"></span>      
-            <button @click.prevent="commentCreate">추가</button>
-          </form>
         </div>
         <div class="col-2">
         </div>

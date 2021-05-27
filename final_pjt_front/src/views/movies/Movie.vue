@@ -4,7 +4,6 @@
     <div class='container'>
       <div class="row">
         <div class="col-2">
-          <div class="btn btn-primary" @click.prevent="getMovies">전체영화조회</div>
         </div>
         <div class="col-8">
           <multiselect      
@@ -18,24 +17,64 @@
       <br>
       <hr>
       <div class="row">
-        <div class="d-flex flex-column justify-content-md-start col-1">  
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(28)">액션</div> 
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(12)">모험</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(35)">코미디</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(80)">범죄</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(99)">다큐</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(10751)">가족</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(14)">판타지</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(36)">역사</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(27)">공포</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(10402)">음악</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(9648)">미스터리</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(10749)">로맨스</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(878)">SF</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(10700)">TV 영화</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(53)">스릴러</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(10752)">전쟁</div>
-          <div class="btn btn-danger" style="border: 2px solid #343a40" @click.prevent="genreFilter(37)">서부</div>        
+        <div class="col-1">
+          <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">        
+            <label class="btn btn-primary my-1 border border-primary">
+              <input type="radio" class="btn-check" name="options" autocomplete="off" @click="getMovies">전체 영화
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" autocomplete="off" @click.prevent="genreFilter(28)">액션
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" @click.prevent="genreFilter(12)">모험
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" @click.prevent="genreFilter(35)">코미디
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off" @click.prevent="genreFilter(80)">범죄
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option5" autocomplete="off" @click.prevent="genreFilter(99)">다큐
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option6" autocomplete="off" @click.prevent="genreFilter(10751)">가족
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option7" autocomplete="off" @click.prevent="genreFilter(14)">판타지
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option8" autocomplete="off" @click.prevent="genreFilter(36)">역사
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option9" autocomplete="off" @click.prevent="genreFilter(27)">공포
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option10" autocomplete="off" @click.prevent="genreFilter(10402)">음악
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option11" autocomplete="off" @click.prevent="genreFilter(9648)">미스터리
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option12" autocomplete="off" @click.prevent="genreFilter(10749)">로맨스
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option13" autocomplete="off" @click.prevent="genreFilter(878)">SF
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option14" autocomplete="off" @click.prevent="genreFilter(10700)">TV 영화
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option15" autocomplete="off" @click.prevent="genreFilter(53)">스릴러
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option16" autocomplete="off" @click.prevent="genreFilter(10752)">전쟁
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="radio" class="btn-check" name="options" id="option17" autocomplete="off" @click.prevent="genreFilter(37)">서부
+            </label>
+     
+          </div>
         </div>
         <div class="col-11">
           <div class="container">

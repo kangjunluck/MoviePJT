@@ -4,9 +4,9 @@
       <div class="row">
         <div class="col-12 col-md-4">
           <h2>나닮배</h2>
-          ↓나를 닮은 배우 알아보러 가기↓
-          <div>
-            <router-link :to="{ name: 'Similar' }"><img style="width:20rem;" src="../assets/마블리.jpg" alt=""></router-link>
+          <div class="d-flex flex-column justify-content-center fs-4" style="height:38rem;">
+            ↓나를 닮은 배우 알아보러 가기↓
+            <router-link :to="{ name: 'Similar' }"><img style="width:25rem;" src="../assets/마블리.jpg" alt=""></router-link>
           </div>
         </div>
         <div class="col-12 col-md-4 ">
@@ -29,36 +29,13 @@
               </div>
             </figure>
           </div>
-          <hr>
-          <h2>최고 평점 영화 Top5</h2>        
-          <div class="list-group">
-            <div v-for="(rankmovie, index) in rankMovies" :key="rankmovie.id" :class="{'movie-img': true}">
-              <button type="button" 
-                      class="list-group-item list-group-item-action bg-dark border-0 d-flex justify-content-start" 
-                      aria-current="true" data-bs-toggle="offcanvas" 
-                      :data-bs-target="'#offcanvasBottom' + rankmovie.id" 
-                      aria-controls="offcanvasBottom">
-                <span class="fs-4" style="color: gainsboro">{{index+1}}위 - {{ rankmovie.title }} - {{ rankmovie.vote_average }}점</span>
-              </button>
-              <div class="offcanvas offcanvas-bottom text-dark" style="min-height: 25rem; background-color:gainsboro" tabindex="-1" :id="'offcanvasBottom' + rankmovie.id" aria-labelledby="offcanvasBottomLabel">
-                <div class="offcanvas-header">
-                  <h3 class="offcanvas-title" id="offcanvasBottomLabel">{{ rankmovie.title }}</h3>
-                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <h4>평점 : {{ rankmovie.vote_average }}점  상영시간 : {{ rankmovie.runtime }}분</h4>
-                <div class="offcanvas-body small fs-4">
-                  {{rankmovie.overview}}
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="col-12 col-md-4 ">
           <h2>내가 찜한 영화</h2>
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active" data-interval="2500">
-                <img src="../assets/좋아요.png" class="d-block w-100" alt="...">
+                <img src="../assets/좋아요.png" class="d-block w-100" style="height:39rem;" alt="...">
               </div>
               <div class="carousel-item" data-interval="2500" v-for="likemovie in likeMovies" :key="likemovie.id">
                 <figure @mouseover="movieHover = true"
@@ -90,6 +67,35 @@
           </div>
         </div>
       </div>
+      <hr>
+      <h2>최고 평점 영화 Top5</h2>  
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <div class="list-group">
+            <div v-for="(rankmovie, index) in rankMovies" :key="rankmovie.id" :class="{'movie-img': true}">
+              <button type="button" 
+                      class="list-group-item list-group-item-action bg-dark border-0 d-flex justify-content-start" 
+                      aria-current="true" data-bs-toggle="offcanvas" 
+                      :data-bs-target="'#offcanvasBottom' + rankmovie.id" 
+                      aria-controls="offcanvasBottom">
+                <span class="fs-4" style="color: gainsboro">{{index+1}}위 - {{ rankmovie.title }} - {{ rankmovie.vote_average }}점</span>
+              </button>
+              <div class="offcanvas offcanvas-bottom text-dark" style="min-height: 22rem; background-color:gainsboro" tabindex="-1" :id="'offcanvasBottom' + rankmovie.id" aria-labelledby="offcanvasBottomLabel">
+                <div class="offcanvas-header">
+                  <h1 class="offcanvas-title" id="offcanvasBottomLabel">{{ rankmovie.title }}</h1>
+                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <h4>평점 : {{ rankmovie.vote_average }}점  상영시간 : {{ rankmovie.runtime }}분</h4>
+                <div class="offcanvas-body small fs-4">
+                  {{rankmovie.overview}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4"></div>
+      </div>      
     </div>
   </div>
 </template>
