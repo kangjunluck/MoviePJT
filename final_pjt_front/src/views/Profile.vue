@@ -14,7 +14,6 @@
                            :to="{ name: 'ArticleDetail', params: { article_id: article.id } }">Detail</router-link></p>
             <p class="my-0 form-control" style="text-overflow: ellipsis; text-align:justify;">{{ article.content }}</p>
             <p class="my-0 bg-dark text-white fs-5" style="text-align:right;">작성 :{{ $moment(article.created_at).format('YYYY-MM-DD') }}</p>
-            <p class="my-0 bg-dark text-white fs-5" style="text-align:right;">수정 :{{ $moment(article.updated_at).format('YYYY-MM-DD') }}</p>
           </div>
         </div>
         <div class="col-4">

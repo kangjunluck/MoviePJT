@@ -8,13 +8,13 @@
       </p>
       <div class="row">
         <div class="col-12" id="my-articles">
-          <div v-for="(article, index) in itemsForList" :key="article.pk" class="fs-3">
+          <div v-for="(article) in itemsForList" :key="article.pk" class="fs-3">
             <p class="my-0 bg-dark text-white" style="text-align:left;">
-              {{ index+1 }}. {{ article.title }}
+              {{ article.title }}
               <router-link class="changelink fs-4"
                            style="color: darkred; text-decoration: none;"                            
                            :to="{ name: 'ArticleDetail', params: { article_id: article.id } }">Detail</router-link></p>
-            <p class="my-0 form-control bg-dark" style="text-overflow: ellipsis; text-align:justify; height: 10rem;  color:gainsboro;">{{ article.content }}</p>
+            <p class="my-0 form-control bg-dark" style="text-overflow: ellipsis; text-align:justify; color:gainsboro;">{{ article.content }}</p>
             <p class="my-0 bg-dark fs-5" style="text-align:right; color:gainsboro;">작성자 :{{ article.username }}</p>
             <p class="my-0 bg-dark fs-5" style="text-align:right; color:gainsboro;">작성 :{{ $moment(article.created_at).format('YYYY-MM-DD') }}</p>
             <p class="my-0 bg-dark fs-5" style="text-align:right; color:gainsboro;">수정 :{{ $moment(article.updated_at).format('YYYY-MM-DD') }}</p>

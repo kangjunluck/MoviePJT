@@ -21,8 +21,7 @@ from collections import OrderedDict
 from django.views.decorators.http import require_http_methods, require_POST, require_safe
 from .forms import PostForm
 from .models import Post
-
-
+import urllib.request
 # Create your views here.
 
 # 전체영화 정보 제공
@@ -159,7 +158,6 @@ def find_actor(request):
         ordered_data = sorted(response_data["faces"], key=lambda x:x['celebrity']['confidence'], reverse=True)
         actor_name = ordered_data[0]['celebrity']['value']
         actor_confidence = ordered_data[0]['celebrity']['confidence']
-        print (response_data['faces'])
         apikey = '1f4ac8ec8d56852461c1bf865cdc05a1'
         movie_list = range(1)
         mylist = []
@@ -178,11 +176,30 @@ def find_actor(request):
                 listmovies = list(map(str,person['filmoNames'].split('|')))
                 movie_list += listmovies
         # print(movies)
+
+        # 여기부터 네이버 이미지 검색
+        client_id = "eYotA3CvP6ZD2fSIIYJ2"
+        client_secret = "6hg4HOsh_v"
+        encText = urllib.parse.quote(actor_name)
+        url = "https://openapi.naver.com/v1/search/image?query=" + encText # json 결과
+        request = urllib.request.Request(url)
+        request.add_header("X-Naver-Client-Id",client_id)
+        request.add_header("X-Naver-Client-Secret",client_secret)
+        response = urllib.request.urlopen(request)
+        rescode = response.getcode()
+        if(rescode==200):
+            response_body = response.read()
+            response_data = json.loads(response_body.decode('utf-8'))
+        else:
+            print('Error Code:' + rescode)
+
+        actor_img_url = response_data['items'][0]['thumbnail']   
         context = {
             'movie_list': movie_list,
             'actor_name': actor_name,
             'actor_confidence': actor_confidence,
-            'imgname': imgname
+            'imgname': imgname,
+            'actor_img_url':actor_img_url,
         }
         # print(context)
         return Response(context)

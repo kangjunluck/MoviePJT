@@ -5,20 +5,29 @@
     <a class="fs-2" href="http://127.0.0.1:8000/movies/uploadimg/">사진등록하러가기</a><br><hr><br>    
     <div v-if="similarActor">
       <div class="container fs-3">
-        <div class="row">        
-          <div class="col-md-6">
-            <h1>나를 닮은 배우는??</h1>   
-            <hr>                                  
-            <a class="fs-2" :href="googleUrl" target='_blank'>{{ similarActor.actor_name }}</a>과            
-            <p class="fs-2">{{ similarActor.actor_confidence * 100 }}% 일치!!</p>                        
-          </div>
-          <div class="col-md-6">
-            <h1>나닮배가 나온 영화</h1>
+        <div class="row" style="height:30rem;">        
+          <div class="col-md-5">
+            <h1>등록한 사진??</h1>   
             <hr>
-            <div v-for="(movie, index) in similarActor.movie_list" :key="index">
-              {{ index+1 }}.
-              <a class="fs-2" :href="baseUrl + movie" target='_blank'> {{ movie }}</a>                           
-            </div>
+            <img style="height:25rem;" :src="'http://127.0.0.1:8000/media/' + imgName" alt="">                                            
+          </div>
+          <div class="col-md-2 d-flex flex-column justify-content-center aligns-content-center">         
+            <a class="fs-1 noline" :href="googleUrl" target='_blank'>{{ similarActor.actor_name }}</a>   
+            <p class="fs-2">{{ similarActor.actor_confidence.toFixed(4) * 100 }}%</p>
+            <p>일치!!</p>
+          </div>
+          <div class="col-md-5">
+            <h1>나(등록한 사진)를 닮은 배우는??</h1>   
+            <hr>
+            <img style="height:25rem;" :src="actorUrl" alt=""><br>                              
+          </div>
+        </div>
+        <hr>
+        <h1>나닮배가 나온 영화</h1>
+        <div>
+          <div v-for="(movie, index) in similarActor.movie_list" :key="index">
+            {{ index+1 }}.
+            <a class="fs-2 noline" :href="baseUrl + movie" target='_blank'> {{ movie }}</a>                           
           </div>
         </div>
       </div>
@@ -45,6 +54,7 @@ export default {
       baseUrl: 'https://www.google.com/search?q=',
       googleUrl: '',
       imgName: null,
+      actorUrl: null,
     }
   },
   methods: {
@@ -83,6 +93,7 @@ export default {
           this.similarActor = res.data
           this.imgName = res.data.imgname
           this.googleUrl = this.baseUrl + res.data.actor_name
+          this.actorUrl = res.data.actor_img_url
         })
         .catch((err) => {
           console.log(err)
@@ -99,3 +110,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.noline {
+  text-decoration: none;
+}
+</style>
