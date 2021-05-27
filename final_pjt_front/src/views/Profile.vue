@@ -39,7 +39,6 @@
                            :to="{ name: 'ArticleDetail', params: { article_id: comment.article_id } }">Detail</router-link></p>
             <p class="my-0 form-control" style="text-overflow: ellipsis; text-align:justify;">{{ comment.content }}</p>
             <p class="my-0 bg-dark text-white fs-5" style="text-align:right;">작성 :{{ $moment(comment.created_at).format('YYYY-MM-DD') }}</p>
-            <p class="my-0 bg-dark text-white fs-5" style="text-align:right;">수정 :{{ $moment(comment.updated_at).format('YYYY-MM-DD') }}</p>
           </div>
         </div>
       </div>
