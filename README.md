@@ -31,25 +31,22 @@
 
 ### :man_artist: 팀원 정보 및 업무 분담 내역
 
+업무 방식 : 페어 프로그래밍
+
 팀장 : 민평홍
 
-Main : 백엔드
+조원 : 서강준
 
 - Database Modeling(ERD) 설계, DB관리
 - Vue 요청에 대한 응답 설계
 - 영화 데이터, 배우 데이터 API 요청을 통한 데이터 수집
 - 네이버 clova API를 통한 닮은 배우 기능 구축
-- PPT 제작
-
-조원 : 서강준
-
-Main : 프론트엔드
 
 - Router 및 Vue component 설계
 - css, javascript, bootstrap(jquery)를 통한 화면 디자인
 - Django(back)에 데이터 요청 함수 설계
 - 다양한 버튼, 효과 기능 구현(pagination, carousel, 등)
-- 영상 제작
+- 영상 제작, PPT 제작
 
 ### :goal_net: 목표 서비스 구현 및 실제 구현 정도
 
